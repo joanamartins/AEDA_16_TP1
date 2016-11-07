@@ -14,3 +14,19 @@ Um estudante é identificado por um código, nome, email e estatuto (pode consid
 
 Todos os estudantes possuem um tutor, que é um docente do MIEIC. No instante em que o estudante efetua a inscrição, é­lhe atribuído um tutor. A escolha do tutor é efetuada de modo a equilibrar o número de estudantes por tutor.
 O sistema deve permitir a consulta de inscrições quer por estudante, quer por unidade curricular.
+
+
+### Usefull links
+
+Estatudos: https://sigarra.up.pt/feup/pt/web_base.gera_pagina?p_pagina=estatutos%20especiais
+`````
+- Trabalhador Estudante
+- Dirigente Associativo
+- Praticante de Desporto de Alto Rendimento
+- Pai e Mãe Estudante
+- Necessidades Educativas Especiais
+- Militar
+- Bombeiro
+- Praticante de Confissões Religiosas
+- Estudante-atleta da U.Porto
+```
