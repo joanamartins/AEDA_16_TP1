@@ -18,7 +18,8 @@ O sistema deve permitir a consulta de inscrições quer por estudante, quer por 
 
 ### Usefull links
 
-_Estatudos:_ https://sigarra.up.pt/feup/pt/web_base.gera_pagina?p_pagina=estatutos%20especiais
+**Estatudos:** https://sigarra.up.pt/feup/pt/web_base.gera_pagina?p_pagina=estatutos%20especiais
+
 `````
 - Trabalhador Estudante
 - Dirigente Associativo
