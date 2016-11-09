@@ -1,52 +1,52 @@
 MIEEC - Mestrado Integrado em Engenharia Electrotécnica e de Computadores
 
-Codigo		Sigla	Nome																	Creditos
+Codigo		Sigla	Nome																	Creditos	Vagas
 1º Ano
 1º Semestre
-EEC0005	    PROG1	Programação 1                                                           7
-EEC0003	    AMAT1	Análise Matemática 1                                                    8
-EEC0006	     LSDI	Laboratório de Sistemas Digitais                                        7.5
-EEC0004	     ALGE	Álgebra                                                                 6
-FEUP002	       PF	Projeto FEUP                                                            1.5
-2º Semestre
-EEC0009	    PROG2	Programação 2                                                           7
-EEC0010	     CIRC	Circuitos                                                               7
-EEC0008	     FISI	Física                                                                  8
-EEC0007	    AMAT2	Análise Matemática 2                                                    8
-2º Ano
-1º Semestre
-EEC0016	     MNUM	Métodos Numéricos                                                       6
-EEC0015	     CPIN	Competências Pessoais e Interpessoais                                   5
-EEC0013	     TSIN	Teoria do Sinal                                                         6
-EEC0012	     ELEM	Electromagnetismo                                                       7
-EEC0011	     PEST	Probabilidades e Estatística                                            6
-2º Semestre
-EEC0014	    ELEC1	Electrónica 1                                                           6
-EEC0072	     SEEN	Sistemas Eléctricos de Energia                                          6
-EEC0068	     TCON	Teoria do Controlo                                                      6
-EEC0137	       IC	Informação e Comunicação                                                6
-EEC0136	       SA	Sistemas e Automação                                                    6
-3º Ano
-1º Semestre
-EEC0027	    ELEC2	Electrónica 2                                                           8
-EEC0138	     COMP	Computadores                                                            8
-EEC0025	     SCON	Sistemas e Controlo                                                     6
-EEC0021	     OELE	Ondas Electromagnéticas                                                 8
-2º Semestre
-EEC0019	     EGES	Economia e Gestão                                                       5
-EEC0139	       SO	Sistemas Operativos                                                     6
-EEC0028	    ELEC3	Electrónica 3                                                           7
-EEC0026	     PDSI	Processamento Digital de Sinal                                          6
-EEC0022	    FTEL1	Fundamentos de Telecomunicações 1                                       6
-4º Ano
-1º Semestre
-EEC0033	     RCOM	Redes de Computadores                                                   6
-EEC0023	    FTEL2	Fundamentos de Telecomunicações 2                                       6
-EEC0030	     LPRO	Laboratório de Programação                                              6
-2º Semestre
-EEC0032	     STEL	Sistemas de Telecomunicações                                            6
-EEC0127	       IO	Investigação Operacional                                                6
-5º Ano
-1º Semestre
-EEC0035	      PDI	Preparação da Dissertação                                               3
-EEC0140	    SETEC	Sistemas de Engenharia - Telecomunicações, Electrónica e Computadores   9
+EEC0005	    PROG1	Programação 1                                                           7			112
+EEC0003	    AMAT1	Análise Matemática 1                                                    8			112
+EEC0006	     LSDI	Laboratório de Sistemas Digitais                                        7.5			112
+EEC0004	     ALGE	Álgebra                                                                 6			112
+FEUP002	       PF	Projeto FEUP                                                            1.5			112
+2º Semestre																								112
+EEC0009	    PROG2	Programação 2                                                           7			112
+EEC0010	     CIRC	Circuitos                                                               7			112
+EEC0008	     FISI	Física                                                                  8			112
+EEC0007	    AMAT2	Análise Matemática 2                                                    8			112
+2º Ano																									112
+1º Semestre																								112
+EEC0016	     MNUM	Métodos Numéricos                                                       6			112
+EEC0015	     CPIN	Competências Pessoais e Interpessoais                                   5			112
+EEC0013	     TSIN	Teoria do Sinal                                                         6			112
+EEC0012	     ELEM	Electromagnetismo                                                       7			112
+EEC0011	     PEST	Probabilidades e Estatística                                            6			112
+2º Semestre																								112
+EEC0014	    ELEC1	Electrónica 1                                                           6			112
+EEC0072	     SEEN	Sistemas Eléctricos de Energia                                          6			112
+EEC0068	     TCON	Teoria do Controlo                                                      6			112
+EEC0137	       IC	Informação e Comunicação                                                6			112
+EEC0136	       SA	Sistemas e Automação                                                    6			112
+3º Ano																									112
+1º Semestre																								112
+EEC0027	    ELEC2	Electrónica 2                                                           8			112
+EEC0138	     COMP	Computadores                                                            8			112
+EEC0025	     SCON	Sistemas e Controlo                                                     6			112
+EEC0021	     OELE	Ondas Electromagnéticas                                                 8			112
+2º Semestre																								112
+EEC0019	     EGES	Economia e Gestão                                                       5			112
+EEC0139	       SO	Sistemas Operativos                                                     6			112
+EEC0028	    ELEC3	Electrónica 3                                                           7			112
+EEC0026	     PDSI	Processamento Digital de Sinal                                          6			112
+EEC0022	    FTEL1	Fundamentos de Telecomunicações 1                                       6			112
+4º Ano																									112
+1º Semestre																								112
+EEC0033	     RCOM	Redes de Computadores                                                   6			112
+EEC0023	    FTEL2	Fundamentos de Telecomunicações 2                                       6			112
+EEC0030	     LPRO	Laboratório de Programação                                              6			112
+2º Semestre																								112
+EEC0032	     STEL	Sistemas de Telecomunicações                                            6			112
+EEC0127	       IO	Investigação Operacional                                                6			112
+5º Ano																									112
+1º Semestre																								112
+EEC0035	      PDI	Preparação da Dissertação                                               3			112
+EEC0140	    SETEC	Sistemas de Engenharia - Telecomunicações, Electrónica e Computadores   9			112

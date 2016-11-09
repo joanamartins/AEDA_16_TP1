@@ -62,6 +62,7 @@ void menuAluno(string username) {
 	}
 	vector<pair<string, int>> resultados = feup.getCursos()[i]->getEstudantes()[j]->getResultados();
 
+	int ano, semestre;
 	int menuAluno = -1, menuV, menuVUC;
 	while (menuAluno != 4) {
 		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Logout", 1, 4);
@@ -107,6 +108,28 @@ void menuAluno(string username) {
 							break;
 						case 2:
 							menuVUC = 5;
+							cout << "Ano: ";
+							ano = getInt(1, 5);
+							cout << "Semestre: ";
+							semestre = getInt(1, 2);
+							cout << "Codigo\tSigla\tNome\t\tResultado\n"; //falta formatar
+							for (int k = 0; k < feup.getCursos()[i]->getEstudantes()[j]->getResultados().size(); k++)
+							{
+								for (int l = 0; l < feup.getCursos()[i]->getUCs().size(); l++)
+								{
+									if (feup.getCursos()[i]->getUCs()[l]->getCodigo() == feup.getCursos()[i]->getEstudantes()[j]->getResultados()[k].first)
+									{
+										if (feup.getCursos()[i]->getUCs()[l]->getAno() == ano && feup.getCursos()[i]->getUCs()[l]->getSemestre() == semestre)
+										{
+											cout << feup.getCursos()[i]->getUCs()[l]->getCodigo() << '\t' <<
+												feup.getCursos()[i]->getUCs()[l]->getSigla() << '\t' <<
+												feup.getCursos()[i]->getUCs()[l]->getNome() << '\t' <<
+												feup.getCursos()[i]->getEstudantes()[j]->getResultados()[k].second << endl;
+										}
+									}
+								}
+							}
+							system("PAUSE");
 							break;
 						case 3:
 							menuVUC = 5;
@@ -238,7 +261,9 @@ int main()
 		switch (mainMenu) {
 		case 1:
 			try {
-				login();
+				//bypass login() for testing purposes
+				menuAluno("up201405308");
+				//login();
 			}
 			catch (EstudanteInvalido &est) {
 				est.usernameInvalido();

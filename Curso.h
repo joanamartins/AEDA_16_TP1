@@ -19,8 +19,11 @@ public:
 	Curso(string sigla, string nome);
 	vector <Ucurricular *> getUCs() const;
 	vector <Estudante *> getEstudantes() const;
+	int getAno(string codigo);
+	int getSemestre(string codigo);
 	void addUC(Ucurricular *uc);
 	void addEstudante(Estudante *est);
+	void decreaseVacancy(string codigo);
 	void readData(string file);
 	void saveData(string file) const;
 };

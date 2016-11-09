@@ -16,6 +16,20 @@ vector <Estudante *> Curso::getEstudantes() const
 	return estudantes;
 }
 
+int Curso::getAno(string codigo)
+{
+	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
+		if (codigo == (*i)->getCodigo())
+			return (*i)->getAno();
+}
+
+int Curso::getSemestre(string codigo)
+{
+	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
+		if (codigo == (*i)->getCodigo())
+			return (*i)->getSemestre();
+}
+
 
 void Curso::addUC(Ucurricular *uc) 
 { 
@@ -25,6 +39,13 @@ void Curso::addUC(Ucurricular *uc)
 void Curso::addEstudante(Estudante *est)
 {
 	estudantes.push_back(est);
+}
+
+void Curso::decreaseVacancy(string codigo)
+{
+	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
+		if (codigo == (*i)->getCodigo())
+			(*i)->decreaseVacancy();
 }
 
 void Curso::readData(string file)
@@ -43,6 +64,7 @@ void Curso::readData(string file)
 	int estatuto;
 	int resultado;
 	float creditos;
+	int vagas;
 	int ano = 0;
 	int semestre = 2;
 	string areaCientifica = "test area";
@@ -100,9 +122,14 @@ void Curso::readData(string file)
 			line.erase(line.begin(), line.begin() + line.find("  ") + 1);
 
 			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
 			creditos = stof(section);
+			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			section = line;
+			vagas = stoi(section);
 			
-			uc_tmp = new Ucurricular(codigo, sigla, nome, creditos, ano, semestre, areaCientifica);
+			uc_tmp = new Ucurricular(codigo, sigla, nome, creditos, vagas, ano, semestre, areaCientifica);
 			addUC(uc_tmp);
 		}
 	}
@@ -142,6 +169,7 @@ void Curso::readData(string file)
 			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
 			codigo = section;
+			decreaseVacancy(codigo);
 			line.erase(line.begin(), line.begin() + line.find("\t") + 2);
 			resultado = stoi(line);
 			est_tmp->addUC(codigo, resultado);
@@ -160,7 +188,7 @@ void Curso::saveData(string file) const
 	int ano = 0;
 	int semestre = 0;
 	output << sigla << " - " << nome << "\n\n";
-	output << "Codigo\t\tSigla\tNome\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCreditos\n";
+	output << "Codigo\t\tSigla\tNome\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCreditos\tVagas\n";
 	for (size_t i = 0; i < getUCs().size(); i++)
 	{
 		if (ano != getUCs()[i]->getAno())
