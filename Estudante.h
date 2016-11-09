@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <map>
 using namespace std;
 
 class Estudante {
@@ -12,13 +13,15 @@ class Estudante {
 	unsigned long password;
 	string email;
 	string nome;
-	string estatuto;
+	int estatuto;
 	vector<pair<string, int>> resultados;
 public:
 	Estudante() {};
 	~Estudante() {};
-	Estudante(string codigo, string password, string email, string nome, string estatuto);
-	Estudante(string codigo, unsigned long password, string email, string nome, string estatuto);
+	Estudante(string codigo, string password, string email, string nome, int estatuto);
+	Estudante(string codigo, unsigned long password, string email, string nome, int estatuto);
+	typedef map<int, string> Estatutos;
+	static Estatutos estatutos;
 	string getCodigo() const;
 	string getNome() const;
 	unsigned long getPassword() const;

@@ -1,6 +1,18 @@
 #include "Estudante.h"
 
-Estudante::Estudante(string codigo, string password, string email, string nome, string estatuto) {
+Estudante::Estatutos Estudante::estatutos = {
+	{ 0, "Trabalhador Estudante" },
+	{ 1, "Dirigente Associativo" },
+	{ 2, "Praticante de Desporto de Alto Rendimento" },
+	{ 3, "Pai e Mãe Estudante" },
+	{ 4, "Necessidades Educativas Especiais" },
+	{ 5, "Militar" },
+	{ 6, "Bombeiro" },
+	{ 7, "Praticante de Confissões Religiosas" },
+	{ 8, "Estudante-atleta da U.Porto" }
+};
+
+Estudante::Estudante(string codigo, string password, string email, string nome, int estatuto) {
 	this->codigo = codigo;
 	this->email = email;
 	this->nome = nome;
@@ -8,7 +20,7 @@ Estudante::Estudante(string codigo, string password, string email, string nome, 
 	this->password = hashing(password);
 }
 
-Estudante::Estudante(string codigo, unsigned long password, string email, string nome, string estatuto) {
+Estudante::Estudante(string codigo, unsigned long password, string email, string nome, int estatuto) {
 	this->codigo = codigo;
 	this->email = email;
 	this->nome = nome;
@@ -19,9 +31,9 @@ Estudante::Estudante(string codigo, unsigned long password, string email, string
 string Estudante::info() const {
 	stringstream ss;
 	ss << codigo << "\t\t" << password << "\t" << email << "\t" << nome;
-	for (size_t i = 0; i < 27 - nome.length(); i += 1)
+	for (size_t i = 0; i < 40 - nome.length(); i += 1)
 		ss << ' ';
-	ss << estatuto << endl;
+	ss << estatutos[estatuto] << endl;
 	return ss.str();
 }
 

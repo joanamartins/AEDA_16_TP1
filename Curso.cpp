@@ -40,7 +40,7 @@ void Curso::readData(string file)
 	string nome;
 	string email;
 	unsigned long password;
-	string estatuto;
+	int estatuto;
 	int resultado;
 	float creditos;
 	int ano = 0;
@@ -131,7 +131,7 @@ void Curso::readData(string file)
 		line.erase(line.begin(), line.begin() + line.find("  ") + 1);
 
 		section = line;
-		estatuto = section;
+		estatuto = stoi(section);
 
 		est_tmp = new Estudante(codigo, password, email, nome, estatuto);
 
