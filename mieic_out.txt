@@ -54,7 +54,7 @@ EIC0106	     LGPR	Laboratorio de Gestao de Projectos                            
 
 Estudantes
 Codigo			Password	Email					Nome									Estatuto
-up201405308		190865266	up201405308@fe.up.pt	Luis Miguel da Rocha Alves              Praticante de Desporto de Alto Rendimento
+up201405308		190865266	up201405308@fe.up.pt	Luis Miguel da Rocha Alves              Dirigente Associativo
 Unidades curriculares frequentadas
 	EIC0004		17
 	EIC0083		16
@@ -63,7 +63,7 @@ Unidades curriculares frequentadas
 	FEUP002		15
 	EIC0003		11
 
-up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Necessidades Educativas Especiais
+up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mãe Estudante
 Unidades curriculares frequentadas
 	EIC0004		17
 	EIC0083		16
@@ -72,7 +72,7 @@ Unidades curriculares frequentadas
 	FEUP002		15
 	EIC0003		11
 
-up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  Bombeiro
+up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  Militar
 Unidades curriculares frequentadas
 	EIC0004		17
 	EIC0083		16
@@ -80,4 +80,7 @@ Unidades curriculares frequentadas
 	EIC0011		11
 	FEUP002		15
 	EIC0003		11
+
+fdsf		2483057	dsf	fds                                     Estudante-atleta da U.Porto
+Unidades curriculares frequentadas
 

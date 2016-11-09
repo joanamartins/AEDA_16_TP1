@@ -1,15 +1,16 @@
 #include "Estudante.h"
 
 Estudante::Estatutos Estudante::estatutos = {
-	{ 0, "Trabalhador Estudante" },
-	{ 1, "Dirigente Associativo" },
-	{ 2, "Praticante de Desporto de Alto Rendimento" },
-	{ 3, "Pai e Mãe Estudante" },
-	{ 4, "Necessidades Educativas Especiais" },
-	{ 5, "Militar" },
-	{ 6, "Bombeiro" },
-	{ 7, "Praticante de Confissões Religiosas" },
-	{ 8, "Estudante-atleta da U.Porto" }
+	{ 0, "Ordinário" },
+	{ 1, "Trabalhador Estudante" },
+	{ 2, "Dirigente Associativo" },
+	{ 3, "Praticante de Desporto de Alto Rendimento" },
+	{ 4, "Pai e Mãe Estudante" },
+	{ 5, "Necessidades Educativas Especiais" },
+	{ 6, "Militar" },
+	{ 7, "Bombeiro" },
+	{ 8, "Praticante de Confissões Religiosas" },
+	{ 9, "Estudante-atleta da U.Porto" }
 };
 
 Estudante::Estudante(string codigo, string password, string email, string nome, int estatuto) {
@@ -25,6 +26,30 @@ Estudante::Estudante(string codigo, unsigned long password, string email, string
 	this->email = email;
 	this->nome = nome;
 	this->estatuto = estatuto;
+	this->password = password;
+}
+
+int Estudante::getEstatuto(string estatuto)
+{
+	for (Estatutos::iterator i = estatutos.begin(); i != estatutos.end(); i++)
+		if (i->second == estatuto)
+			return i->first;
+	return -1;
+}
+
+Estudante::Estudante(string codigo, string password, string email, string nome, string estatuto) {
+	this->codigo = codigo;
+	this->email = email;
+	this->nome = nome;
+	this->estatuto = getEstatuto(estatuto);
+	this->password = hashing(password);
+}
+
+Estudante::Estudante(string codigo, unsigned long password, string email, string nome, string estatuto) {
+	this->codigo = codigo;
+	this->email = email;
+	this->nome = nome;
+	this->estatuto = getEstatuto(estatuto);
 	this->password = password;
 }
 

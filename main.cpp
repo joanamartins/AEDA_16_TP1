@@ -190,6 +190,7 @@ void newStudent()
 	string nome;
 	string estatuto;
 	int estatuto_int = -1;
+	stringstream estatutos;
 	Estudante * estudante_tmp;
 
 	system("CLS");
@@ -204,24 +205,16 @@ void newStudent()
 	getline(cin, email);
 	cout << "Nome: ";
 	getline(cin, nome);
-	while (estatuto_int == -1)
-	{
-		cout << "Estatuto: ";
-		getline(cin, estatuto);
-		system("CLS");
-		for (Estudante::Estatutos::iterator i = Estudante::estatutos.begin(); i != Estudante::estatutos.end(); i++)
-			if (i->second == estatuto)
-				estatuto_int = i->first;
-		if (estatuto_int == -1)
+
+	for (Estudante::Estatutos::iterator i = Estudante::estatutos.begin(); i != Estudante::estatutos.end(); i++)
 		{
-			cout << "Estatuto invalido\nLista de estatutos:\n";
-			for (Estudante::Estatutos::iterator i = Estudante::estatutos.begin(); i != Estudante::estatutos.end(); i++)
-				cout << '\t' << i->second << endl;
-			cout << endl;
-			system("PAUSE");
-			cout << endl;
+			if (i == Estudante::estatutos.begin())
+				estatutos << i->second;
+			else
+				estatutos << ',' << i->second;
 		}
-	}
+	estatuto_int = getMenu(estatutos.str(), 1, 10);
+	estatuto_int--;
 
 	estudante_tmp = new Estudante(codigo, password, email, nome, estatuto_int);
 	feup.getCursos()[0]->addEstudante(estudante_tmp);

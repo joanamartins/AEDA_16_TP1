@@ -20,8 +20,11 @@ public:
 	~Estudante() {};
 	Estudante(string codigo, string password, string email, string nome, int estatuto);
 	Estudante(string codigo, unsigned long password, string email, string nome, int estatuto);
+	Estudante(string codigo, string password, string email, string nome, string estatuto);
+	Estudante(string codigo, unsigned long password, string email, string nome, string estatuto);
 	typedef map<int, string> Estatutos;
 	static Estatutos estatutos;
+	static int getEstatuto(string estatuto);
 	string getCodigo() const;
 	string getNome() const;
 	unsigned long getPassword() const;
