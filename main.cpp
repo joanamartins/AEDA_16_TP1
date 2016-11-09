@@ -188,6 +188,7 @@ void newStudent()
 	string password;
 	string email;
 	string nome;
+	string estatuto;
 	Estudante * estudante_tmp;
 
 	system("CLS");
@@ -202,8 +203,10 @@ void newStudent()
 	getline(cin, email);
 	cout << "Nome: ";
 	getline(cin, nome);
+	cout << "Estatuto: ";
+	getline(cin, estatuto);
 
-	estudante_tmp = new Estudante(codigo, password, email, nome);
+	estudante_tmp = new Estudante(codigo, password, email, nome, estatuto);
 	feup.getCursos()[0]->addEstudante(estudante_tmp);
 	cout << "Estudante criado com sucesso\n";
 	system("PAUSE");

@@ -1,27 +1,27 @@
 #include "Estudante.h"
 
-Estudante::Estudante(string codigo, string password, string email, string nome) {
+Estudante::Estudante(string codigo, string password, string email, string nome, string estatuto) {
 	this->codigo = codigo;
 	this->email = email;
 	this->nome = nome;
-	this->trabalha = false;
+	this->estatuto = estatuto;
 	this->password = hashing(password);
 }
 
-Estudante::Estudante(string codigo, unsigned long password, string email, string nome) {
+Estudante::Estudante(string codigo, unsigned long password, string email, string nome, string estatuto) {
 	this->codigo = codigo;
 	this->email = email;
 	this->nome = nome;
-	this->trabalha = false;
+	this->estatuto = estatuto;
 	this->password = password;
 }
 
 string Estudante::info() const {
 	stringstream ss;
 	ss << codigo << "\t\t" << password << "\t" << email << "\t" << nome;
-	for (size_t i = 0; i < 40 - nome.length(); i += 1)
+	for (size_t i = 0; i < 27 - nome.length(); i += 1)
 		ss << ' ';
-	ss << trabalha << endl;
+	ss << estatuto << endl;
 	return ss.str();
 }
 

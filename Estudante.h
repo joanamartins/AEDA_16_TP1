@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -11,13 +12,13 @@ class Estudante {
 	unsigned long password;
 	string email;
 	string nome;
-	bool trabalha;
+	string estatuto;
 	vector<pair<string, int>> resultados;
 public:
 	Estudante() {};
 	~Estudante() {};
-	Estudante(string codigo, string password, string email, string nome);
-	Estudante(string codigo, unsigned long password, string email, string nome);
+	Estudante(string codigo, string password, string email, string nome, string estatuto);
+	Estudante(string codigo, unsigned long password, string email, string nome, string estatuto);
 	string getCodigo() const;
 	string getNome() const;
 	unsigned long getPassword() const;

@@ -40,7 +40,7 @@ void Curso::readData(string file)
 	string nome;
 	string email;
 	unsigned long password;
-	bool trabalha;
+	string estatuto;
 	int resultado;
 	float creditos;
 	int ano = 0;
@@ -131,9 +131,9 @@ void Curso::readData(string file)
 		line.erase(line.begin(), line.begin() + line.find("  ") + 1);
 
 		section = line;
-		trabalha = stoi(section);
+		estatuto = section;
 
-		est_tmp = new Estudante(codigo, password, email, nome);
+		est_tmp = new Estudante(codigo, password, email, nome, estatuto);
 
 		getline(curso, line);
 		getline(curso, line);
@@ -178,7 +178,7 @@ void Curso::saveData(string file) const
 	}
 	if (getEstudantes().size() == 0)
 		return;
-	output << "\nEstudantes\nCodigo\t\t\tPassword\tEmail\t\t\t\t\tNome\t\t\t\t\t\t\t\t\tTrabalhador\n";
+	output << "\nEstudantes\nCodigo\t\t\tPassword\tEmail\t\t\t\t\tNome\t\t\t\t\t\t\t\t\tEstatuto\n";
 	for (size_t i = 0; i < getEstudantes().size(); i++)
 	{
 		output << getEstudantes()[i]->info() << "Unidades curriculares frequentadas\n";
