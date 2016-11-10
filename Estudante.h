@@ -26,9 +26,11 @@ public:
 	static Estatutos estatutos;
 	static int getEstatuto(string estatuto);
 	string getCodigo() const;
+	string getEmail() const;
 	string getNome() const;
 	unsigned long getPassword() const;
 	vector<pair<string, int>> getResultados() const;
+	void setEmail(string email);
 	void addUC(string codigo, int resultado);
 	string info() const;
 };
@@ -48,3 +50,7 @@ public:
 };
 
 unsigned long hashing(string password);
+
+bool compareByResult(pair<string, int> uc1, pair<string, int> uc2);
+
+bool validEmail(string email);

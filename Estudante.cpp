@@ -1,15 +1,15 @@
 #include "Estudante.h"
 
 Estudante::Estatutos Estudante::estatutos = {
-	{ 0, "Ordinário" },
+	{ 0, "Ordinario" },
 	{ 1, "Trabalhador Estudante" },
 	{ 2, "Dirigente Associativo" },
 	{ 3, "Praticante de Desporto de Alto Rendimento" },
-	{ 4, "Pai e Mãe Estudante" },
+	{ 4, "Pai e Mae Estudante" },
 	{ 5, "Necessidades Educativas Especiais" },
 	{ 6, "Militar" },
 	{ 7, "Bombeiro" },
-	{ 8, "Praticante de Confissões Religiosas" },
+	{ 8, "Praticante de Confissoes Religiosas" },
 	{ 9, "Estudante-atleta da U.Porto" }
 };
 
@@ -67,6 +67,11 @@ string Estudante::getCodigo() const
 	return codigo;
 }
 
+string Estudante::getEmail() const
+{
+	return email;
+}
+
 string Estudante::getNome() const
 {
 	return nome;
@@ -80,6 +85,11 @@ unsigned long Estudante::getPassword() const
 vector<pair<string, int>> Estudante::getResultados() const
 {
 	return resultados;
+}
+
+void Estudante::setEmail(string email)
+{
+	this->email = email;
 }
 
 void Estudante::addUC(string codigo, int resultado)
@@ -119,4 +129,23 @@ unsigned long hashing(string password)
 		hash = (hash * seed) + password[i];
 	}
 	return hash;
+}
+
+bool compareByResult(pair<string, int> uc1, pair<string, int> uc2)
+{
+	return uc1.second < uc2.second;
+}
+
+bool validEmail(string email)
+{
+	int at = email.find((char)64);
+	int pt;
+	if (at != email.npos)
+	{
+		email.erase(email.begin(), email.begin() + at);
+		pt = email.find('.');
+		if (pt != email.npos && pt < email.length())
+			return true;
+	}
+	return false;
 }

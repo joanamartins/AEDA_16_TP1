@@ -42,7 +42,7 @@
     <Text Include="mieic_out.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B093C2B8-E855-4F45-A757-28571CFFC515}</ProjectGuid>
+    <ProjectGuid>{FC580196-DDD6-4B67-B7F1-A2B5F347642F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>AEDA_t1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>

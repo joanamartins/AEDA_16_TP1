@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <windows.h>
+#include <algorithm>
 //#include <stdlib.h>
 #include "Faculdade.h"
 #include "Curso.h"
@@ -46,6 +47,7 @@ string maskPassword()
 
 void menuAluno(string username) {
 	size_t i, j;
+	
 	bool found = false;
 	for (i = 0; i < feup.getCursos().size(); i++)
 	{
@@ -60,10 +62,15 @@ void menuAluno(string username) {
 		if (found)
 			break;
 	}
-	vector<pair<string, int>> resultados = feup.getCursos()[i]->getEstudantes()[j]->getResultados();
+	Estudante * currentStudent = feup.getCursos()[i]->getEstudantes()[j];
+	vector<pair<string, int>> resultados = currentStudent->getResultados();
 
-	int ano, semestre;
-	int menuAluno = -1, menuV, menuVUC;
+	int ano, semestre, resultado;
+	string email;
+	bool noResult = true;
+	bool isEmpty = true;
+	vector <Ucurricular *> ucs = feup.getCursos()[i]->getUCs();
+	int menuAluno = -1, menuV, menuVUC, menuE;
 	while (menuAluno != 4) {
 		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Logout", 1, 4);
 		switch (menuAluno) {
@@ -76,72 +83,139 @@ void menuAluno(string username) {
 					menuV = 3;
 					system("CLS");
 					cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tTrabalhador\n";
-					cout << feup.getCursos()[i]->getEstudantes()[j]->info();
+					cout << currentStudent->info();
 					system("PAUSE");
 					break;
 				case 2:
-					menuV = 3;
 					menuVUC = -1;
-					while (menuVUC != 5) {
-						menuVUC = getMenu("Todas,Por ano/semestre,Por nome,Por resultado,Voltar atras", 1, 5);
+					while (menuVUC != 4) {
+						menuVUC = getMenu("Todas,Por ano/semestre,Por resultado,Voltar atras", 1, 4);
 						switch (menuVUC) {
 						case 1:
-							menuVUC = 5;
+							menuVUC = 4;
 							system("CLS");
-							cout << "Codigo da UC\tNome\t\t\t\t\t\t\t\t\tResultado\n";
-							for (vector<pair<string, int>>::const_iterator k = resultados.begin(); k != resultados.end(); k++)
+							cout << "Codigo da UC\tNome\t\t\t\t\t\t\t\t\tResultado";
+							for (size_t k = 0; k < feup.getCursos()[i]->getUCs().size(); k++)
 							{
-								cout << (*k).first << "\t\t";
-								for (size_t l = 0; l < feup.getCursos()[i]->getUCs().size(); l++)
+								noResult = true;
+								cout << endl << feup.getCursos()[i]->getUCs()[k]->getCodigo() << "\t\t" << feup.getCursos()[i]->getUCs()[k]->getNome();
+								for (size_t m = 0; m < 82 - feup.getCursos()[i]->getUCs()[k]->getNome().length(); m += 1)
+									cout << ' ';
+								for (vector<pair<string, int>>::const_iterator l = resultados.begin(); l != resultados.end(); l++)
 								{
-									if ((*k).first == feup.getCursos()[i]->getUCs()[l]->getCodigo())
+									
+									if (feup.getCursos()[i]->getUCs()[k]->getCodigo() == (*l).first)
 									{
-										cout << feup.getCursos()[i]->getUCs()[l]->getNome();
-										for (size_t m = 0; m < 72 - feup.getCursos()[i]->getUCs()[l]->getNome().length(); m += 1)
-											cout << ' ';
-										break;
+										noResult = false;
+										cout << (*l).second;
 									}
 								}
-								cout << (*k).second << endl;
+								if (noResult)
+									cout << "Sem resultado";
 							}
+							cout << endl;
 							system("PAUSE");
 							break;
 						case 2:
-							menuVUC = 5;
-							cout << "Ano: ";
+							menuVUC = 4;
+							system("CLS");
+							cout << "Ano";
 							ano = getInt(1, 5);
-							cout << "Semestre: ";
+							cout << "Semestre";
 							semestre = getInt(1, 2);
-							cout << "Codigo\tSigla\tNome\t\tResultado\n"; //falta formatar
-							for (int k = 0; k < feup.getCursos()[i]->getEstudantes()[j]->getResultados().size(); k++)
+							system("CLS");
+							cout << "Codigo      Sigla\tNome\t\t\t\t\t\t\t\t\t\tResultado\n";
+							isEmpty = true;
+							for (size_t k = 0; k < currentStudent->getResultados().size(); k++)
 							{
-								for (int l = 0; l < feup.getCursos()[i]->getUCs().size(); l++)
+								for (size_t l = 0; l < feup.getCursos()[i]->getUCs().size(); l++)
 								{
-									if (feup.getCursos()[i]->getUCs()[l]->getCodigo() == feup.getCursos()[i]->getEstudantes()[j]->getResultados()[k].first)
+									if (feup.getCursos()[i]->getUCs()[l]->getCodigo() == currentStudent->getResultados()[k].first)
 									{
 										if (feup.getCursos()[i]->getUCs()[l]->getAno() == ano && feup.getCursos()[i]->getUCs()[l]->getSemestre() == semestre)
 										{
 											cout << feup.getCursos()[i]->getUCs()[l]->getCodigo() << '\t' <<
 												feup.getCursos()[i]->getUCs()[l]->getSigla() << '\t' <<
-												feup.getCursos()[i]->getUCs()[l]->getNome() << '\t' <<
-												feup.getCursos()[i]->getEstudantes()[j]->getResultados()[k].second << endl;
+												feup.getCursos()[i]->getUCs()[l]->getNome();
+											for (size_t m = 0; m < 80 - feup.getCursos()[i]->getUCs()[l]->getNome().length(); m += 1)
+												cout << ' ';
+											cout << currentStudent->getResultados()[k].second << endl;
+											isEmpty = false;
 										}
 									}
 								}
 							}
+							if (isEmpty)
+							{
+								system("CLS");
+								cout << "Nenhuma cadeira no ano/semestre especificado\n";
+							}
 							system("PAUSE");
 							break;
 						case 3:
-							menuVUC = 5;
+							menuVUC = 4;
+							system("CLS");
+							cout << "Resultado minimo";
+							resultado = getInt(0, 20);
+							sort(resultados.begin(), resultados.end(), compareByResult);
+							system("CLS");
+							cout << "Codigo da UC\tNome\t\t\t\t\t\t\t\t\tResultado\n";
+							for (vector<pair<string, int>>::const_iterator k = resultados.begin(); k != resultados.end(); k++)
+							{
+								if ((*k).second >= resultado)
+								{
+									cout << (*k).first << "\t\t";
+									for (size_t l = 0; l < feup.getCursos()[i]->getUCs().size(); l++)
+									{
+										if ((*k).first == feup.getCursos()[i]->getUCs()[l]->getCodigo())
+										{
+											cout << feup.getCursos()[i]->getUCs()[l]->getNome();
+											for (size_t m = 0; m < 72 - feup.getCursos()[i]->getUCs()[l]->getNome().length(); m += 1)
+												cout << ' ';
+											break;
+										}
+									}
+									cout << (*k).second << endl;
+								}
+							}
+							system("PAUSE");
 							break;
-						case 4:
-							menuVUC = 5;
+						default:
 							break;
 						}
 					}
 					break;
+				default:
+					break;
 				}
+				break;
 		case 2:
+			menuE = -1;
+			while (menuE != 4) {
+				menuE = getMenu("Email,Password,Estatuto,Voltar atras", 1, 4);
+				switch (menuE) {
+				case 1:
+					menuE = 4;
+					cin.ignore();
+					email = "";
+					cout << "Email atual: " << currentStudent->getEmail() << endl;
+					while (!(validEmail(email)))
+					{
+						cout << "Novo email: ";
+						getline(cin, email);
+						if (validEmail(email))
+						{
+							currentStudent->setEmail(email);
+							cout << "Email alterado com sucesso\n";
+						}
+						else
+							cout << "Email invalido\n";
+						
+					}
+					system("PAUSE");
+					break;
+				}
+			}
 			break;
 		case 3:
 			break;
@@ -228,6 +302,8 @@ void newStudent()
 	getline(cin, email);
 	cout << "Nome: ";
 	getline(cin, nome);
+	cout << "Estatuto: ";
+	system("PAUSE");
 
 	for (Estudante::Estatutos::iterator i = Estudante::estatutos.begin(); i != Estudante::estatutos.end(); i++)
 		{
@@ -253,7 +329,9 @@ int main()
 	mieec.readData("mieec.txt");
 	feup.addCurso(&mieec);
 
-	system("mode 120,40");
+	//system("mode 120,40");
+	HWND console = GetConsoleWindow();
+	MoveWindow(console, 200, 100, 1000, 700, TRUE);
 
 	int mainMenu = -1;
 	while (mainMenu != 3) {

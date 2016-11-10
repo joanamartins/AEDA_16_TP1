@@ -179,6 +179,6 @@ bool Date::dateValidate()
 
 void timeToString(time_t t)
 {
-	cout << setw(2) << setfill('0') << (1 + t / 3600) % 24 << ':' << setw(2) << setfill('0') << (t / 60) % 60 << setfill(' ');
+	cout << setw(2) << setfill('0') << (t / 3600) % 24 << ':' << setw(2) << setfill('0') << (t / 60) % 60 << setfill(' ');
 	cout << endl;
 }
