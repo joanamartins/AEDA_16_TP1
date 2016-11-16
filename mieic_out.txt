@@ -3,54 +3,54 @@ MIEIC - Mestrado Integrado em Engenharia Informatica e Computacao
 Codigo		Sigla	Nome																	Creditos	Vagas
 1º Ano
 1º Semestre
-EIC0011	     MDIS	Matematica Discreta                                                     6			109
-EIC0083	     AOCO	Arquitectura e Organizacao de Computadores                              6			109
-EIC0005	     FPRO	Fundamentos da Programacao                                              6			109
-EIC0004	     AMAT	Analise Matematica                                                      6			109
-EIC0003	     ALGE	Algebra                                                                 4.5			109
-FEUP002	       PF	Projeto FEUP                                                            1.5			109
+EIC0011	     MDIS	Matematica Discreta                                                     6			1
+EIC0083	     AOCO	Arquitectura e Organizacao de Computadores                              6			1
+EIC0005	     FPRO	Fundamentos da Programacao                                              6			1
+EIC0004	     AMAT	Analise Matematica                                                      6			1
+EIC0003	     ALGE	Algebra                                                                 4.5			1
+FEUP002	       PF	Projeto FEUP                                                            1.5			1
 2º Semestre
-EIC0105	     MEST	Metodos Estatisticos                                                    4.5			112
-EIC0012	     PROG	Programacao                                                             7.5			112
-EIC0010	    FISI1	Fisica I                                                                6			112
-EIC0009	     CMAT	Complementos de Matematica                                              6			112
-EIC0016	     MPCP	Microprocessadores e Computadores Pessoais                              6			112
+EIC0105	     MEST	Metodos Estatisticos                                                    4.5			1
+EIC0012	     PROG	Programacao                                                             7.5			1
+EIC0010	    FISI1	Fisica I                                                                6			1
+EIC0009	     CMAT	Complementos de Matematica                                              6			1
+EIC0016	     MPCP	Microprocessadores e Computadores Pessoais                              6			1
 2º Ano
 1º Semestre
-EIC0022	     TCOM	Teoria da Computacao                                                    6			112
-EIC0021	     MNUM	Metodos Numericos                                                       4.5			112
-EIC0014	    FISI2	Fisica II                                                               6			112
-EIC0013	     AEDA	Algoritmos e Estruturas de Dados                                        7.5			112
-EIC0020	     LCOM	Laboratorio de Computadores                                             6			112
+EIC0022	     TCOM	Teoria da Computacao                                                    6			1
+EIC0021	     MNUM	Metodos Numericos                                                       4.5			1
+EIC0014	    FISI2	Fisica II                                                               6			1
+EIC0013	     AEDA	Algoritmos e Estruturas de Dados                                        7.5			0
+EIC0020	     LCOM	Laboratorio de Computadores                                             6			1
 2º Semestre
-EIC0023	     BDAD	Bases de Dados                                                          6			112
-EIC0110	      CAL	Concepcao e Analise de Algoritmos                                       6			112
-EIC0019	     CGRA	Computacao Grafica                                                      6			112
-EIC0027	     SOPE	Sistemas Operativos                                                     6			112
-EIC0111	     LPOO	Laboratorio de Programacao Orientada por Objectos                       6			112
+EIC0023	     BDAD	Bases de Dados                                                          6			0
+EIC0110	      CAL	Concepcao e Analise de Algoritmos                                       6			0
+EIC0019	     CGRA	Computacao Grafica                                                      6			0
+EIC0027	     SOPE	Sistemas Operativos                                                     6			0
+EIC0111	     LPOO	Laboratorio de Programacao Orientada por Objectos                       6			0
 3º Ano
 1º Semestre
-EIC0026	     PLOG	Programacao em Logica                                                   4.5			112
-EIC0084	     LAIG	Laboratorio de Aplicacoes com Interface Grafica                         7.5			112
-EIC0024	     ESOF	Engenharia de Software                                                  6			112
-EIC0032	     RCOM	Redes de Computadores                                                   6			112
-EIC0112	      LTW	Linguagens e Tecnologias Web                                            6			112
+EIC0026	     PLOG	Programacao em Logica                                                   4.5			0
+EIC0084	     LAIG	Laboratorio de Aplicacoes com Interface Grafica                         7.5			0
+EIC0024	     ESOF	Engenharia de Software                                                  6			0
+EIC0032	     RCOM	Redes de Computadores                                                   6			0
+EIC0112	      LTW	Linguagens e Tecnologias Web                                            6			0
 2º Semestre
-EIC0085	     LBAW	Laboratorio de Bases de Dados e Aplicacoes Web                          7.5			112
-EIC0029	     IART	Inteligencia Artificial                                                 6			112
-EIC0028	     COMP	Compiladores                                                            6			112
-EIC0036	     SDIS	Sistemas Distribuidos                                                   6			112
-EIC0031	     PPIN	Proficiencia Pessoal e Interpessoal                                     4.5			112
+EIC0085	     LBAW	Laboratorio de Bases de Dados e Aplicacoes Web                          7.5			0
+EIC0029	     IART	Inteligencia Artificial                                                 6			1
+EIC0028	     COMP	Compiladores                                                            6			1
+EIC0036	     SDIS	Sistemas Distribuidos                                                   6			1
+EIC0031	     PPIN	Proficiencia Pessoal e Interpessoal                                     4.5			1
 4º Ano
 1º Semestre
-EIC0040	     SINF	Sistemas de Informacao                                                  6			112
-EIC0086	     LDSO	Laboratorio de Desenvolvimento de Software                              7.5			112
-EIC0034	     GEMP	Gestao de Empresas                                                      4.5			112
-EIC0033	     AIAD	Agentes e Inteligencia Artificial Distribuida                           6			112
-EIC0039	     MFES	Metodos Formais em Engenharia de Software                               6			112
+EIC0040	     SINF	Sistemas de Informacao                                                  6			1
+EIC0086	     LDSO	Laboratorio de Desenvolvimento de Software                              7.5			1
+EIC0034	     GEMP	Gestao de Empresas                                                      4.5			1
+EIC0033	     AIAD	Agentes e Inteligencia Artificial Distribuida                           6			1
+EIC0039	     MFES	Metodos Formais em Engenharia de Software                               6			1
 2º Semestre
-EIC0037	     IOPE	Investigacao Operacional                                                4.5			112
-EIC0106	     LGPR	Laboratorio de Gestao de Projectos                                      7.5			112
+EIC0037	     IOPE	Investigacao Operacional                                                4.5			1
+EIC0106	     LGPR	Laboratorio de Gestao de Projectos                                      7.5			1
 
 Estudantes
 Codigo			Password	Email					Nome									Estatuto
@@ -62,8 +62,28 @@ Unidades curriculares frequentadas
 	EIC0011		11
 	FEUP002		15
 	EIC0003		11
+	EIC0105		10
+	EIC0012		10
+	EIC0010		10
+	EIC0009		10
+	EIC0016		10
+	EIC0022		10
+	EIC0021		10
+	EIC0014		10
+	EIC0020		10
+	EIC0013		-1
+	EIC0023		-1
+	EIC0110		-1
+	EIC0019		-1
+	EIC0027		-1
+	EIC0111		-1
+	EIC0084		-1
+	EIC0024		-1
+	EIC0032		-1
+	EIC0112		-1
+	EIC0085		-1
 
-up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mãe Estudante
+up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mae Estudante
 Unidades curriculares frequentadas
 	EIC0004		17
 	EIC0083		16
@@ -71,6 +91,16 @@ Unidades curriculares frequentadas
 	EIC0011		11
 	FEUP002		15
 	EIC0003		11
+	EIC0105		10
+	EIC0012		10
+	EIC0010		10
+	EIC0009		10
+	EIC0016		10
+	EIC0022		10
+	EIC0021		10
+	EIC0014		10
+	EIC0013		10
+	EIC0020		10
 
 up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  Militar
 Unidades curriculares frequentadas
@@ -80,4 +110,14 @@ Unidades curriculares frequentadas
 	EIC0011		11
 	FEUP002		15
 	EIC0003		11
+	EIC0105		10
+	EIC0012		10
+	EIC0010		10
+	EIC0009		10
+	EIC0016		10
+	EIC0022		10
+	EIC0021		10
+	EIC0014		10
+	EIC0013		10
+	EIC0020 		0
 

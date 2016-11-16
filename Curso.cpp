@@ -21,6 +21,7 @@ int Curso::getAno(string codigo)
 	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
 		if (codigo == (*i)->getCodigo())
 			return (*i)->getAno();
+	return -1;
 }
 
 int Curso::getSemestre(string codigo)
@@ -28,6 +29,7 @@ int Curso::getSemestre(string codigo)
 	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
 		if (codigo == (*i)->getCodigo())
 			return (*i)->getSemestre();
+	return -1;
 }
 
 
@@ -41,11 +43,53 @@ void Curso::addEstudante(Estudante *est)
 	estudantes.push_back(est);
 }
 
-void Curso::decreaseVacancy(string codigo)
+int Curso::getEstudanteAno(int id) const
 {
-	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
-		if (codigo == (*i)->getCodigo())
-			(*i)->decreaseVacancy();
+	int ret = 0;
+	for (size_t i = 0; i < estudantes[id]->getResultados().size(); i++)
+	{
+		for (size_t j = 0; j < ucurriculares.size(); j++)
+		{
+			if (estudantes[id]->getResultados()[i].first == ucurriculares[j]->getCodigo() && ucurriculares[j]->getAno() > ret)
+			{
+				ret = ucurriculares[j]->getAno();
+			}
+		}
+	}
+	return ret + 1;
+}
+
+void Curso::setUCs(vector <Ucurricular *> ucs)
+{
+	for (size_t i = 0; i < ucurriculares.size(); i++)
+	{
+		for (size_t j = 0; j < ucs.size(); j++)
+		{
+			if (ucurriculares[i]->getCodigo() == ucs[j]->getCodigo())
+			{
+				ucurriculares[i] = ucs[j];
+			}
+		}
+	}
+}
+
+void Curso::setResultados(int id, vector <Ucurricular *> ucs)
+{
+	bool notFound = true;
+	for (size_t i = 0; i < ucs.size(); i++)
+	{
+		notFound = true;
+		for (size_t j = 0; j < estudantes[id]->getResultados().size(); j++)
+		{
+			if (ucs[i]->getCodigo() == estudantes[id]->getResultados()[j].first)
+			{
+				notFound = false;
+				break;
+			}
+		}
+		if (notFound)
+			estudantes[id]->addUC(ucs[i]->getCodigo(), -1);
+	}
 }
 
 void Curso::readData(string file)
@@ -169,7 +213,6 @@ void Curso::readData(string file)
 			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
 			codigo = section;
-			decreaseVacancy(codigo);
 			line.erase(line.begin(), line.begin() + line.find("\t") + 2);
 			resultado = stoi(line);
 			est_tmp->addUC(codigo, resultado);

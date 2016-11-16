@@ -9,4 +9,5 @@ using namespace std;
 
 void showMenu(string menuList);
 int getInt(int min, int max);
-int getMenu(string menuList, int min, int max);
+int getMenu(string menuList);
+int getMenu(string menuList, string title);

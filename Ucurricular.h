@@ -21,9 +21,13 @@ public:
 	string getCodigo() const;
 	string getSigla() const;
 	string getNome() const;
+	int getVagas() const;
+	float getCreditos() const;
 	int getAno() const;
 	int getSemestre() const;
-	void decreaseVacancy();
-	string info();
+	void increaseVacancy(int i);
+	string info() const;
+	string info(int i) const;
+	bool operator=(Ucurricular that);
 };
 

@@ -23,7 +23,9 @@ public:
 	int getSemestre(string codigo);
 	void addUC(Ucurricular *uc);
 	void addEstudante(Estudante *est);
-	void decreaseVacancy(string codigo);
+	int getEstudanteAno(int i) const;
+	void setUCs(vector <Ucurricular *> ucs);
+	void setResultados(int i, vector <Ucurricular *> ucs);
 	void readData(string file);
 	void saveData(string file) const;
 };

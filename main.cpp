@@ -66,18 +66,24 @@ void menuAluno(string username) {
 	vector<pair<string, int>> resultados = currentStudent->getResultados();
 
 	int ano, semestre, resultado;
-	string email;
+	float creditos;
+	int estudanteAno = feup.getCursos()[i]->getEstudanteAno(j);
+	string email, menuTitle, menuCredits, menuOptions;
+	stringstream ss;
 	bool noResult = true;
 	bool isEmpty = true;
 	vector <Ucurricular *> ucs = feup.getCursos()[i]->getUCs();
-	int menuAluno = -1, menuV, menuVUC, menuE;
+	vector <Ucurricular *> ucs_tmp = ucs;
+	int menuAluno = -1, menuV, menuVUC, menuE, menuIUC, menuIUCmax;
 	while (menuAluno != 4) {
-		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Logout", 1, 4);
+		system("CLS");
+		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Logout");
 		switch (menuAluno) {
 		case 1:
 			menuV = -1;
 			while (menuV != 3) {
-				menuV = getMenu("Dados,Unidades curriculares,Voltar atras", 1, 3);
+				system("CLS");
+				menuV = getMenu("Dados,Unidades curriculares,Voltar atras");
 				switch (menuV) {
 				case 1:
 					menuV = 3;
@@ -89,12 +95,13 @@ void menuAluno(string username) {
 				case 2:
 					menuVUC = -1;
 					while (menuVUC != 4) {
-						menuVUC = getMenu("Todas,Por ano/semestre,Por resultado,Voltar atras", 1, 4);
+						system("CLS");
+						menuVUC = getMenu("Todas,Por ano/semestre,Por resultado,Voltar atras");
 						switch (menuVUC) {
 						case 1:
 							menuVUC = 4;
 							system("CLS");
-							cout << "Codigo da UC\tNome\t\t\t\t\t\t\t\t\tResultado";
+							cout << "Codigo da UC\tNome\t\t\t\t\t\t\t\t\t\tResultado";
 							for (size_t k = 0; k < feup.getCursos()[i]->getUCs().size(); k++)
 							{
 								noResult = true;
@@ -192,7 +199,8 @@ void menuAluno(string username) {
 		case 2:
 			menuE = -1;
 			while (menuE != 4) {
-				menuE = getMenu("Email,Password,Estatuto,Voltar atras", 1, 4);
+				system("CLS");
+				menuE = getMenu("Email,Password,Estatuto,Voltar atras");
 				switch (menuE) {
 				case 1:
 					menuE = 4;
@@ -218,6 +226,128 @@ void menuAluno(string username) {
 			}
 			break;
 		case 3:
+			system("CLS");
+			ucs = feup.getCursos()[i]->getUCs();
+			ucs_tmp.clear();
+			for (size_t l = 0; l < ucs.size(); l++)
+			{
+				if (ucs[l]->getAno() > estudanteAno)
+				{
+					ucs.erase(ucs.begin() + l);
+					l--;
+				}
+			}
+			for (size_t k = 0; k < resultados.size(); k++)
+			{
+				for (size_t l = 0; l < ucs.size(); l++)
+				{
+					if (resultados[k].first == ucs[l]->getCodigo())
+					{
+						ucs.erase(ucs.begin() + l);
+						l--;
+					}
+				}
+			}
+			menuIUC = -1;
+			creditos = 0;
+			for (size_t l = 0; l < ucs.size(); l++)
+			{
+				if (ucs[l]->getAno() <= estudanteAno - 1)
+				{
+					creditos += ucs[l]->getCreditos();
+					ucs[l]->increaseVacancy(-1);
+					ucs_tmp.push_back(ucs[l]);
+					ucs.erase(ucs.begin() + l);
+					l--;
+				}
+			}
+			for (size_t l = 0; l < ucs.size(); l++)
+			{
+				ss << ucs[l]->getAno() << '\t' << ucs[l]->getSemestre() << '\t' << ucs[l]->info(0) << ',';
+			}
+			ss << "Finalizar";
+			menuOptions = ss.str();
+			menuTitle = "  Ano\tSemestre Codigo\t    Sigla\tNome\t\t\t\t\t\t\t\t\tCreditos\t\tVagas";
+			menuIUCmax = 0;
+			for (size_t i = 0; i < ss.str().length(); i++)
+				if (ss.str()[i] == ',')
+					menuIUCmax++;
+			menuIUCmax++;
+			while (menuIUC != menuIUCmax)
+			{
+				ss.str(string());
+				ss << "Creditos: " << creditos << "/75\n";
+				menuCredits = ss.str();
+				menuCredits += menuTitle;
+				ss.str(string());
+				system("CLS");
+				cout <<"Selecione uma cadeira nao inscrita para se inscrever, ou uma inscrita para anular a inscricao\n";
+				if (ucs_tmp.size() > 0)
+					cout << "Cadeiras inscritas:\n  Ano\tSemestre Codigo\t    Sigla\tNome\t\t\t\t\t\t\t\t\tCreditos\t\tVagas\n";;
+				for (size_t l = 0; l < ucs_tmp.size(); l++)
+				{
+					cout << "   " << ucs_tmp[l]->getAno() << '\t' << ucs_tmp[l]->getSemestre() << '\t' << ucs_tmp[l]->info();
+				}
+				menuIUC = getMenu(menuOptions, menuCredits);
+				if (menuIUC == menuIUCmax)
+					break;
+				found = false;
+				for (size_t l = 0; l < ucs_tmp.size(); l++)
+				{
+					if (ucs[menuIUC-1] == ucs_tmp[l])
+					{
+						found = true;
+						break;
+					}
+				}
+				if (!found)
+				{
+					creditos += ucs[menuIUC - 1]->getCreditos();
+					if (creditos > 75)
+					{
+						creditos -= ucs[menuIUC - 1]->getCreditos();
+						system("CLS");
+						cout << "Nao pode ultrapassar 75 creditos por ano!\n";
+						system("PAUSE");
+					}
+					else if (ucs[menuIUC - 1]->getVagas() <= 0)
+					{
+						creditos -= ucs[menuIUC - 1]->getCreditos();
+						system("CLS");
+						cout << "A cadeira " << ucs[menuIUC - 1]->getSigla() << " nao tem vagas.\n";
+						system("PAUSE");
+					}
+					else
+					{
+						ucs[menuIUC - 1]->increaseVacancy(-1);
+						ucs_tmp.push_back(ucs[menuIUC - 1]);
+					}
+				}
+				else
+				{
+					ucs[menuIUC - 1]->increaseVacancy(1);
+					creditos -= ucs[menuIUC - 1]->getCreditos();
+					for (size_t l = 0; l < ucs_tmp.size(); l++)
+					{
+						if (ucs[menuIUC - 1] == ucs_tmp[l])
+						{
+							ucs_tmp.erase(ucs_tmp.begin() + l);
+							l--;
+							break;
+						}
+					}
+				}
+				for (size_t l = 0; l < ucs.size(); l++)
+				{
+					ss << ucs[l]->getAno() << '\t' << ucs[l]->getSemestre() << '\t' << ucs[l]->info(0) << ',';
+				}
+				ss << "Finalizar";
+				menuOptions = ss.str();
+			}
+			
+			feup.getCursos()[i]->setUCs(ucs);
+			feup.getCursos()[i]->setResultados(j, ucs_tmp);
+			system("PAUSE");
 			break;
 			}
 		}
@@ -312,7 +442,7 @@ void newStudent()
 			else
 				estatutos << ',' << i->second;
 		}
-	estatuto_int = getMenu(estatutos.str(), 1, 10);
+	estatuto_int = getMenu(estatutos.str());
 	estatuto_int--;
 
 	estudante_tmp = new Estudante(codigo, password, email, nome, estatuto_int);
@@ -331,11 +461,12 @@ int main()
 
 	//system("mode 120,40");
 	HWND console = GetConsoleWindow();
-	MoveWindow(console, 200, 100, 1000, 700, TRUE);
+	MoveWindow(console, 100, 100, 1200, 700, TRUE);
 
 	int mainMenu = -1;
 	while (mainMenu != 3) {
-		mainMenu = getMenu("Login,Registar,Sair,Sair e guardar alteracoes", 1, 4);
+		system("CLS");
+		mainMenu = getMenu("Login,Registar,Sair,Sair e guardar alteracoes");
 		switch (mainMenu) {
 		case 1:
 			try {
