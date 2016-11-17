@@ -24,6 +24,7 @@
     <ClCompile Include="Estudante.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menus.cpp" />
+    <ClCompile Include="Tutor.cpp" />
     <ClCompile Include="Ucurricular.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Estudante.h" />
     <ClInclude Include="Menus.h" />
+    <ClInclude Include="Tutor.h" />
     <ClInclude Include="Ucurricular.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
