@@ -9,7 +9,7 @@ Date::Date()
 	time_t t;
 	struct tm  date;
 	time(&t);
-	localtime_s(&date, &t);
+    /*localtime_s(&date, &t);*/
 
 	day = date.tm_mday;
 	month = date.tm_mon + 1;

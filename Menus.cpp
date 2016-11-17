@@ -1,39 +1,6 @@
 #include "menus.h"
 using namespace std;
 
-string maskPassword()
-{
-	string password;
-	char c;
-
-	DWORD con_mode;
-	DWORD dwRead;
-
-	HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
-
-	GetConsoleMode(hIn, &con_mode);
-	SetConsoleMode(hIn, con_mode & ~(ENABLE_ECHO_INPUT | ENABLE_LINE_INPUT));
-
-	while (ReadConsoleA(hIn, &c, 1, &dwRead, NULL) && c != '\r')
-	{
-		if (c == '\b')
-		{
-			if (password.length() != 0)
-			{
-				cout << "\b \b";
-				password.resize(password.length() - 1);
-			}
-		}
-		else
-		{
-			password += c;
-			cout << '*';
-		}
-	}
-	cout << '\n';
-	return password;
-}
-
 void showMenu(string menuList, string title, string chosenList)
 {
 	Date now;
