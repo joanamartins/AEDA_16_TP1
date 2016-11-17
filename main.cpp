@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <windows.h>
 #include <algorithm>
 //#include <stdlib.h>
 #include "Curso.h"
@@ -8,6 +7,8 @@
 #include "Estudante.h"
 #include "Menus.h"
 using namespace std;
+#include <time.h>
+
 
 vector<Curso *> feup;
 
@@ -18,10 +19,6 @@ int main()
 	feup.push_back(&mieic);
 	mieec.readData("mieec.txt");
 	feup.push_back(&mieec);
-
-	//system("mode 120,40");
-	HWND console = GetConsoleWindow();
-	MoveWindow(console, 100, 100, 1200, 700, TRUE);
 
 	int mainMenu = -1;
 	while (mainMenu != 3) {

@@ -510,7 +510,7 @@ void login()
 	if (username.find("@") != string::npos)
 		username.erase(username.begin() + username.find("@"), username.end());
 	cout << "Password: ";
-	password = maskPassword();
+    cin >> password;
 	hashedPassword = hashing(password);
 
 	studentExists = false;
