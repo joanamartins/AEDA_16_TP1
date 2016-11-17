@@ -6,7 +6,14 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include <algorithm>
+#include "Menus.h"
 using namespace std;
+
+extern vector<Curso *> feup;
+
+class Curso;
+class Ucurricular;
 
 class Estudante {
 	string codigo;
@@ -30,9 +37,15 @@ public:
 	string getNome() const;
 	unsigned long getPassword() const;
 	vector<pair<string, int>> getResultados() const;
+	int getAno() const;
 	void setEmail(string email);
+	void setResultados(const vector <Ucurricular *> &ucs);
 	void addUC(string codigo, int resultado);
 	string info() const;
+	void menu();
+	void menuVisualizar(); 
+	void menuEditar();
+	void menuInscrever();
 };
 
 class EstudanteInvalido {
@@ -54,3 +67,5 @@ unsigned long hashing(string password);
 bool compareByResult(pair<string, int> uc1, pair<string, int> uc2);
 
 bool validEmail(string email);
+
+void login();

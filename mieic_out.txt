@@ -33,10 +33,10 @@ EIC0111	     LPOO	Laboratorio de Programacao Orientada por Objectos             
 EIC0026	     PLOG	Programacao em Logica                                                   4.5			0
 EIC0084	     LAIG	Laboratorio de Aplicacoes com Interface Grafica                         7.5			0
 EIC0024	     ESOF	Engenharia de Software                                                  6			0
-EIC0032	     RCOM	Redes de Computadores                                                   6			0
-EIC0112	      LTW	Linguagens e Tecnologias Web                                            6			0
+EIC0032	     RCOM	Redes de Computadores                                                   6			1
+EIC0112	      LTW	Linguagens e Tecnologias Web                                            6			1
 2º Semestre
-EIC0085	     LBAW	Laboratorio de Bases de Dados e Aplicacoes Web                          7.5			0
+EIC0085	     LBAW	Laboratorio de Bases de Dados e Aplicacoes Web                          7.5			1
 EIC0029	     IART	Inteligencia Artificial                                                 6			1
 EIC0028	     COMP	Compiladores                                                            6			1
 EIC0036	     SDIS	Sistemas Distribuidos                                                   6			1
@@ -79,9 +79,6 @@ Unidades curriculares frequentadas
 	EIC0111		-1
 	EIC0084		-1
 	EIC0024		-1
-	EIC0032		-1
-	EIC0112		-1
-	EIC0085		-1
 
 up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mae Estudante
 Unidades curriculares frequentadas

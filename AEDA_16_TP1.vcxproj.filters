@@ -44,9 +44,6 @@
     <ClInclude Include="Estudante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Faculdade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Menus.h">
       <Filter>Header Files</Filter>
     </ClInclude>

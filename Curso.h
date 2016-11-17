@@ -24,8 +24,8 @@ public:
 	void addUC(Ucurricular *uc);
 	void addEstudante(Estudante *est);
 	int getEstudanteAno(int i) const;
-	void setUCs(vector <Ucurricular *> ucs);
-	void setResultados(int i, vector <Ucurricular *> ucs);
+	void setUCs(const vector <Ucurricular *> &ucs);
+	void newStudent();
 	void readData(string file);
 	void saveData(string file) const;
 };

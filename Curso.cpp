@@ -59,7 +59,7 @@ int Curso::getEstudanteAno(int id) const
 	return ret + 1;
 }
 
-void Curso::setUCs(vector <Ucurricular *> ucs)
+void Curso::setUCs(const vector <Ucurricular *> &ucs)
 {
 	for (size_t i = 0; i < ucurriculares.size(); i++)
 	{
@@ -73,23 +73,46 @@ void Curso::setUCs(vector <Ucurricular *> ucs)
 	}
 }
 
-void Curso::setResultados(int id, vector <Ucurricular *> ucs)
+void Curso::newStudent()
 {
-	bool notFound = true;
-	for (size_t i = 0; i < ucs.size(); i++)
+	string codigo;
+	string password;
+	string email;
+	string nome;
+	string estatuto;
+	int estatuto_int = -1;
+	stringstream estatutos;
+	Estudante * estudante_tmp;
+
+	system("CLS");
+	cin.ignore();
+	cout << "Codigo: ";
+	getline(cin, codigo);
+	if (codigo.find("@") != string::npos)
+		codigo.erase(codigo.begin() + codigo.find("@"), codigo.end());
+	cout << "Password: ";
+	getline(cin, password);
+	cout << "Email: ";
+	getline(cin, email);
+	cout << "Nome: ";
+	getline(cin, nome);
+	cout << "Estatuto: ";
+	system("PAUSE");
+
+	for (Estudante::Estatutos::iterator i = Estudante::estatutos.begin(); i != Estudante::estatutos.end(); i++)
 	{
-		notFound = true;
-		for (size_t j = 0; j < estudantes[id]->getResultados().size(); j++)
-		{
-			if (ucs[i]->getCodigo() == estudantes[id]->getResultados()[j].first)
-			{
-				notFound = false;
-				break;
-			}
-		}
-		if (notFound)
-			estudantes[id]->addUC(ucs[i]->getCodigo(), -1);
+		if (i == Estudante::estatutos.begin())
+			estatutos << i->second;
+		else
+			estatutos << ',' << i->second;
 	}
+	estatuto_int = getMenu(estatutos.str());
+	estatuto_int--;
+
+	estudante_tmp = new Estudante(codigo, password, email, nome, estatuto_int);
+	addEstudante(estudante_tmp);
+	cout << "Estudante criado com sucesso\n";
+	system("PAUSE");
 }
 
 void Curso::readData(string file)
