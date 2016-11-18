@@ -36,8 +36,6 @@ string maskPassword()
 
 void showMenu(string menuList, string title, string chosenList)
 {
-	Date now;
-	timeToString(time(0));
 	for (int i = 0; i < separatorLength; i++)
 		cout << separatorChar;
 	cout << endl;

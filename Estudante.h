@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include "Exceptions.h"
 #include "Menus.h"
 using namespace std;
 
@@ -34,6 +35,7 @@ public:
 	typedef map<int, string> Estatutos;
 	static Estatutos estatutos;
 	static int getEstatuto(string estatuto);
+	static int newCodigo;
 	string getCodigo() const;
 	string getEmail() const;
 	string getNome() const;
@@ -49,20 +51,6 @@ public:
 	void menuVisualizar(); 
 	void menuEditar();
 	void menuInscrever();
-};
-
-class EstudanteInvalido {
-	string nome;
-public:
-	EstudanteInvalido(string nome);
-	void usernameInvalido();
-};
-
-class PasswordInvalida {
-	unsigned long password;
-public:
-	PasswordInvalida(unsigned long password);
-	void passwordInvalida();
 };
 
 unsigned long hashing(string password);

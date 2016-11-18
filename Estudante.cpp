@@ -16,6 +16,8 @@ Estudante::Estatutos Estudante::estatutos = {
 	{ 9, "Estudante-atleta da U.Porto" }
 };
 
+int Estudante::newCodigo = 0;
+
 Estudante::Estudante(string codigo, string password, string email, string nome, int estatuto) {
 	this->codigo = codigo;
 	this->email = email;
@@ -167,28 +169,6 @@ void Estudante::addUC(string codigo, int resultado)
 	resultados.push_back(pair1);
 }
 
-EstudanteInvalido::EstudanteInvalido(string nome)
-{
-	this->nome = nome;
-}
-
-void EstudanteInvalido::usernameInvalido()
-{
-	cout << "Username does not exist: " << "\"" << nome << "\"" << endl;
-	system("PAUSE");
-}
-
-PasswordInvalida::PasswordInvalida(unsigned long password)
-{
-	this->password = password;
-}
-
-void PasswordInvalida::passwordInvalida()
-{
-	cout << "Invalid password." << endl;
-	system("PAUSE");
-}
-
 unsigned long hashing(string password)
 {
 	int seed = 157;
@@ -216,6 +196,7 @@ bool validEmail(string email)
 		if (pt != email.npos && pt < email.length())
 			return true;
 	}
+	throw EmailInvalido(email);
 	return false;
 }
 
@@ -252,7 +233,7 @@ void Estudante::menuVisualizar()
 		case 1:
 			menuV = 4;
 			system("CLS");
-			cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tTrabalhador\n";
+			cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tEstatuto\n";
 			cout << info();
 			system("PAUSE");
 			break;
@@ -395,29 +376,54 @@ void Estudante::menuVisualizar()
 void Estudante::menuEditar()
 {
 	int menuE = -1;
+	string email, pass = "", pass2 = " ";
 	while (menuE != 4) {
 		system("CLS");
 		menuE = getMenu("Email,Password,Estatuto,Voltar atras");
 		switch (menuE) {
 		case 1:
-			menuE = 4;
+			//menuE = 4;
+			system("CLS");
 			cin.ignore();
-			email = "";
 			cout << "Email atual: " << getEmail() << endl;
-			while (!(validEmail(email)))
+			cout << "Novo email: ";
+			getline(cin, email);
+			try
 			{
-				cout << "Novo email: ";
-				getline(cin, email);
-				if (validEmail(email))
-				{
-					setEmail(email);
-					cout << "Email alterado com sucesso\n";
-				}
-				else
-					cout << "Email invalido\n";
-
+				validEmail(email);
 			}
+			catch (EmailInvalido &ema) {
+				ema.emailInvalido();
+				break;
+			}
+			cout << "Email alterado com sucesso!\n";
 			system("PAUSE");
+			break;
+		case 2:
+			system("CLS");
+			//cin.ignore();
+			cout << "Reintroduza a palavra passe atual: ";
+			pass = maskPassword();
+			if (hashing(pass) != getPassword())
+				throw PasswordInvalida(hashing(pass));
+			else
+			{
+				while (pass != pass2)
+				{
+					cout << "Nova palavra passe: ";
+					pass = maskPassword();
+					cout << "Repita: ";
+					pass2 = maskPassword();
+					if (pass != pass2)
+						cout << "As palavras passe nao sao iguais, tente novamente\n";
+				}
+				this->password = hashing(pass);
+				cout << "Palavra passe alterada com sucesso!\n";
+				system("PAUSE");
+			}
+			break;
+		default:
+			menuE = 4;
 			break;
 		}
 	}

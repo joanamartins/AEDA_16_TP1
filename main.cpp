@@ -7,6 +7,7 @@
 #include "Ucurricular.h"
 #include "Estudante.h"
 #include "Menus.h"
+#include "Exceptions.h"
 using namespace std;
 
 vector<Curso *> feup;

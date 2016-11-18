@@ -97,14 +97,22 @@ void Curso::newStudent()
 
 	system("CLS");
 	cin.ignore();
-	cout << "Codigo: ";
-	getline(cin, codigo);
-	if (codigo.find("@") != string::npos)
-		codigo.erase(codigo.begin() + codigo.find("@"), codigo.end());
-	cout << "Password: ";
-	getline(cin, password);
+	codigo = "up";
+	codigo.append(to_string(Estudante::newCodigo));
+	Estudante::newCodigo++;
 	cout << "Email: ";
 	getline(cin, email);
+	try
+	{
+		validEmail(email);
+	}
+	catch (EmailInvalido &ema) {
+		ema.emailInvalido();
+		return;
+	}
+
+	cout << "Password: ";
+	getline(cin, password);
 	cout << "Nome: ";
 	getline(cin, nome);
 	cout << "Estatuto: ";
@@ -123,7 +131,9 @@ void Curso::newStudent()
 	estudante_tmp = new Estudante(codigo, password, email, nome, estatuto_int);
 	estudante_tmp->getDocente();
 	addEstudante(estudante_tmp);
-	cout << "Estudante criado com sucesso\n";
+	cout << "Estudante criado com sucesso:\n";
+	cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tEstatuto\n";
+	cout << estudante_tmp->info();
 	system("PAUSE");
 }
 
@@ -176,7 +186,7 @@ void Curso::readData(string file)
 	getline(curso, line);
 
 	while (getline(curso, line) && line.length() > 0) {
-		if (line == "Estudantes")
+		if (line == "Docentes")
 			break;
 		else if (line.find("Ano") != string::npos)
 		{
@@ -211,7 +221,7 @@ void Curso::readData(string file)
 
 			section = line;
 			vagas = stoi(section);
-			
+
 			uc_tmp = new Ucurricular(codigo, sigla, nome, creditos, vagas, ano, semestre, areaCientifica);
 			addUC(uc_tmp);
 		}
@@ -221,39 +231,15 @@ void Curso::readData(string file)
 	getline(curso, line);
 	while (getline(curso, line) && line.length() > 0)
 	{
-		section = line;
-		section.erase(section.begin() + section.find("\t"), section.end());
-		sigla = section;
-		line.erase(line.begin(), line.begin() + line.find("\t") + 2);
-
-		section = line;
-		section.erase(section.begin() + section.find("\t"), section.end());
-		codigo = section;
-		line.erase(line.begin(), line.begin() + line.find("\t") + 2);
-
-		section = line;
-		section.erase(section.begin() + section.find("\t"), section.end());
-		email = section;
-		line.erase(line.begin(), line.begin() + line.find("\t") + 1);
-
-		section = line;
-		i = 0;
-		while (section[i] == '\t')
-			section.erase(section.begin() + i);
-		//section.pop_back();
-		nome = section;
-
-		doc_tmp = new Docente(sigla, stoi(codigo), email, nome);
-		addDocente(doc_tmp);
-	}
-
-	getline(curso, line);
-	getline(curso, line);
-	while (getline(curso, line) && line.length() > 0) {
-		if (line == "Docentes")
+		if (line == "Estudantes")
 			break;
 		else
 		{
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			sigla = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 2);
+
 			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
 			codigo = section;
@@ -261,40 +247,69 @@ void Curso::readData(string file)
 
 			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
-			password = stoi(section);
-			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
-
-			section = line;
-			section.erase(section.begin() + section.find("\t"), section.end());
 			email = section;
 			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
 
 			section = line;
-			section.erase(section.begin() + section.find("  "), section.end());
+			i = 0;
+			while (section[i] == '\t')
+				section.erase(section.begin() + i);
+			//section.pop_back();
 			nome = section;
-			line.erase(line.begin(), line.begin() + line.find("  ") + 1);
 
-			section = line;
-			estatuto = stoi(section);
-
-			est_tmp = new Estudante(codigo, password, email, nome, estatuto);
-
-			getline(curso, line);
-			getline(curso, line);
-			while (line.find('\t') == 0) {
-				line.erase(line.begin(), line.begin() + 1);
-				section = line;
-				section.erase(section.begin() + section.find("\t"), section.end());
-				codigo = section;
-				line.erase(line.begin(), line.begin() + line.find("\t") + 2);
-				resultado = stoi(line);
-				est_tmp->addUC(codigo, resultado);
-
-				getline(curso, line);
-			}
-			//est_tmp->getDocente();
-			addEstudante(est_tmp);
+			doc_tmp = new Docente(sigla, stoi(codigo), email, nome);
+			addDocente(doc_tmp);
 		}
+	}
+
+	getline(curso, line);
+	getline(curso, line);
+	while (getline(curso, line) && line.length() > 0) {
+		section = line;
+		section.erase(section.begin() + section.find("\t"), section.end());
+		codigo = section;
+		section.erase(section.begin(), section.begin() + 2);
+		cout << section;
+		system("pause");
+		if (stoi(section) >= Estudante::newCodigo)
+			Estudante::newCodigo = stoi(section) + 1;
+		line.erase(line.begin(), line.begin() + line.find("\t") + 2);
+
+		section = line;
+		section.erase(section.begin() + section.find("\t"), section.end());
+		password = stoi(section);
+		line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+		section = line;
+		section.erase(section.begin() + section.find("\t"), section.end());
+		email = section;
+		line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+		section = line;
+		section.erase(section.begin() + section.find("  "), section.end());
+		nome = section;
+		line.erase(line.begin(), line.begin() + line.find("  ") + 1);
+
+		section = line;
+		estatuto = stoi(section);
+
+		est_tmp = new Estudante(codigo, password, email, nome, estatuto);
+
+		getline(curso, line);
+		getline(curso, line);
+		while (line.find('\t') == 0) {
+			line.erase(line.begin(), line.begin() + 1);
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			codigo = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 2);
+			resultado = stoi(line);
+			est_tmp->addUC(codigo, resultado);
+
+			getline(curso, line);
+		}
+		//est_tmp->getDocente();
+		addEstudante(est_tmp);
 	}
 	curso.close();
 }
