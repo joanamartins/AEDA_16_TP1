@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <cstdlib>
 #include "Ucurricular.h"
 #include "Estudante.h"
 #include "Docente.h"
@@ -14,6 +15,7 @@ class Curso {
 	string sigla;
 	string nome;
 	vector <Ucurricular *> ucurriculares;
+	vector <Optativa *> optativas;
 	vector <Estudante *> estudantes;
 	vector <Docente *> docentes;
 public:
@@ -26,6 +28,7 @@ public:
 	int getAno(string codigo);
 	int getSemestre(string codigo);
 	void addUC(Ucurricular *uc);
+	void addUCopt(Optativa *opt);
 	void addEstudante(Estudante *est);
 	void addDocente(Docente * doc);
 	int getEstudanteAno(Estudante * est) const;		//useless function

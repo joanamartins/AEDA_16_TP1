@@ -1,15 +1,13 @@
 #include "Ucurricular.h"
 
-Ucurricular::Ucurricular(string codigo, string sigla, string nome, float creditos, int vagas, int ano, int semestre, string areaCientifica)
+Ucurricular::Ucurricular(string codigo, string sigla, string nome, float creditos, int ano, int semestre)
 {
 	this->codigo = codigo;
 	this->sigla = sigla;
 	this->nome = nome;
 	this->creditos = creditos;
-	this->vagas = vagas;
 	this->ano = ano;
 	this->semestre = semestre;
-	this->areaCientifica = areaCientifica;
 }
 
 string Ucurricular::getCodigo() const
@@ -27,11 +25,6 @@ string Ucurricular::getNome() const
 	return nome;
 }
 
-int Ucurricular::getVagas() const
-{
-	return vagas;
-}
-
 float Ucurricular::getCreditos() const
 {
 	return creditos;
@@ -47,18 +40,13 @@ int Ucurricular::getSemestre() const
 	return semestre;
 }
 
-void Ucurricular::increaseVacancy(int i)
-{
-	vagas += i;
-}
-
 string Ucurricular::info() const
 {
 	stringstream ss;
 	ss << codigo << "\t" << setw(9) << sigla << "\t" << nome;
 	for (size_t i = 0; i < 72 - nome.length(); i += 1)
 		ss << ' ';
-	ss << creditos << "\t\t\t" << vagas << endl;
+	ss << creditos << endl;
 	return ss.str();
 }
 
@@ -68,11 +56,27 @@ string Ucurricular::info(int i) const
 	ss << codigo << "\t" << setw(9) << sigla << "\t" << nome;
 	for (size_t i = 0; i < 72 - nome.length(); i += 1)
 		ss << ' ';
-	ss << creditos << "\t\t\t" << vagas;
+	ss << creditos;
 	return ss.str();
 }
 
 bool Ucurricular::operator=(Ucurricular that)
 {
 	return (this->codigo == that.getCodigo() && this->sigla == that.getSigla() && this->creditos == that.getCreditos());
+}
+
+Optativa::Optativa(string codigo, string sigla, string nome, float creditos, int vagas, int ano, int semestre, string areaCientifica) : Ucurricular(codigo, sigla, nome, creditos, ano, semestre)
+{
+	this->vagas = vagas;
+	this->areaCientifica = areaCientifica;
+}
+
+int Optativa::getVagas() const
+{
+	return vagas;
+}
+
+string Optativa::getArea() const
+{
+	return areaCientifica;
 }

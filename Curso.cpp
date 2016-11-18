@@ -43,6 +43,11 @@ void Curso::addUC(Ucurricular *uc)
 	ucurriculares.push_back(uc); 
 }
 
+void Curso::addUCopt(Optativa *opt)
+{
+	optativas.push_back(opt);
+}
+
 void Curso::addEstudante(Estudante *est)
 {
 	estudantes.push_back(est);
@@ -157,8 +162,9 @@ void Curso::readData(string file)
 	int ano = 0;
 	int semestre = 2;
 	int i = 0;
-	string areaCientifica = "test area";
+	string areaCientifica;
 	Ucurricular *uc_tmp = new Ucurricular;
+	Optativa *opt_tmp = new Optativa;
 	Estudante *est_tmp = new Estudante;
 	Docente *doc_tmp = new Docente;
 
@@ -186,7 +192,7 @@ void Curso::readData(string file)
 	getline(curso, line);
 
 	while (getline(curso, line) && line.length() > 0) {
-		if (line == "Docentes")
+		if (line == "Optativas")
 			break;
 		else if (line.find("Ano") != string::npos)
 		{
@@ -215,6 +221,63 @@ void Curso::readData(string file)
 			line.erase(line.begin(), line.begin() + line.find("  ") + 1);
 
 			section = line;
+			//section.erase(section.begin() + section.find("\t"), section.end());
+			creditos = stof(section);
+			//line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			//section = line;
+			//vagas = stoi(section);
+
+			uc_tmp = new Ucurricular(codigo, sigla, nome, creditos, ano, semestre);
+			addUC(uc_tmp);
+		}
+	}
+
+	getline(curso, line);
+	getline(curso, line);
+	ano = 3;
+	semestre = 1;
+	while (getline(curso, line) && line.length() > 0) {
+		if (line == "Docentes")
+			break;
+		else if (line.find("Ano") != string::npos)
+		{
+			ano++;
+			//semestre -= 2;
+		}
+		else if (line.find("Semestre") != string::npos)
+		{
+			semestre++;
+		}
+		else
+		{
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			codigo = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 2);
+
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			sigla = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			areaCientifica = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			while (line[0] == '\t')
+				line.erase(line.begin(), line.begin() + 1);
+
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			nome = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			while (line[0] == '\t')
+				line.erase(line.begin(), line.begin() + 1);
+
+			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
 			creditos = stof(section);
 			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
@@ -222,8 +285,8 @@ void Curso::readData(string file)
 			section = line;
 			vagas = stoi(section);
 
-			uc_tmp = new Ucurricular(codigo, sigla, nome, creditos, vagas, ano, semestre, areaCientifica);
-			addUC(uc_tmp);
+			opt_tmp = new Optativa(codigo, sigla, nome, creditos, vagas, ano, semestre, areaCientifica);
+			addUCopt(opt_tmp);
 		}
 	}
 
@@ -269,8 +332,6 @@ void Curso::readData(string file)
 		section.erase(section.begin() + section.find("\t"), section.end());
 		codigo = section;
 		section.erase(section.begin(), section.begin() + 2);
-		cout << section;
-		system("pause");
 		if (stoi(section) >= Estudante::newCodigo)
 			Estudante::newCodigo = stoi(section) + 1;
 		line.erase(line.begin(), line.begin() + line.find("\t") + 2);

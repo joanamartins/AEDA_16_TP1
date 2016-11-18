@@ -462,7 +462,7 @@ void Estudante::menuInscrever()
 		if (ucs[l]->getAno() <= getAno() - 1)
 		{
 			creditos += ucs[l]->getCreditos();
-			ucs[l]->increaseVacancy(-1);
+			//ucs[l]->increaseVacancy(-1);
 			ucs_tmp.push_back(ucs[l]);
 			ucs.erase(ucs.begin() + l);
 			l--;
@@ -522,22 +522,22 @@ void Estudante::menuInscrever()
 				cout << "Nao pode ultrapassar 75 creditos por ano!\n";
 				system("PAUSE");
 			}
-			else if (ucs[menuIUC - 1]->getVagas() <= 0)
+			/*else if (ucs[menuIUC - 1]->getVagas() <= 0)
 			{
 				creditos -= ucs[menuIUC - 1]->getCreditos();
 				system("CLS");
 				cout << "A cadeira " << ucs[menuIUC - 1]->getSigla() << " nao tem vagas.\n";
 				system("PAUSE");
-			}
+			}*/
 			else
 			{
-				ucs[menuIUC - 1]->increaseVacancy(-1);
+				//ucs[menuIUC - 1]->increaseVacancy(-1);
 				ucs_tmp.push_back(ucs[menuIUC - 1]);
 			}
 		}
 		else
 		{
-			ucs[menuIUC - 1]->increaseVacancy(1);
+			//ucs[menuIUC - 1]->increaseVacancy(1);
 			creditos -= ucs[menuIUC - 1]->getCreditos();
 			for (size_t l = 0; l < ucs_tmp.size(); l++)
 			{
