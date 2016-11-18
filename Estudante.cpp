@@ -1,6 +1,7 @@
 #include "Estudante.h"
 #include "Curso.h"
 #include "Ucurricular.h"
+#include "Docente.h"
 
 Estudante::Estatutos Estudante::estatutos = {
 	{ 0, "Ordinario" },
@@ -103,6 +104,37 @@ int Estudante::getAno() const
 		}
 	}
 	return ret + 1;
+}
+
+Docente * Estudante::getDocente()
+{
+	bool notFound = true;
+	size_t i, j;
+	for (i = 0; i < feup[0]->getDocentes().size(); i++)
+	{
+		if (notFound)
+		{
+			for (j = 0; j < feup[0]->getDocentes()[i]->getEstudantes().size(); j++)
+			{
+				if (feup[0]->getDocentes()[i]->getEstudantes()[j] == codigo)
+				{
+					notFound = false;
+					break;
+				}
+			}
+		}
+		else
+			break;
+	}
+	if (notFound)
+	{
+		i = Docente::id % feup[0]->getDocentes().size();
+		feup[0]->getDocentes()[i]->addEstudante(this->codigo);
+		Docente::id++;
+	}
+	if (i > 0)
+		i--;
+	return feup[0]->getDocentes()[i];
 }
 
 void Estudante::setEmail(string email)
@@ -209,16 +241,16 @@ void Estudante::menu() {
 void Estudante::menuVisualizar()
 {
 	int i = 0;
-	int menuV = -1, menuVUC = -1;
+	int menuV = -1, menuVUC = -1, menuVD = -1;
 	int ano, semestre, resultado;
 	bool noResult = true;
 	bool isEmpty = true;
-	while (menuV != 3) {
+	while (menuV != 4) {
 		system("CLS");
-		menuV = getMenu("Dados,Unidades curriculares,Voltar atras");
+		menuV = getMenu("Dados,Unidades curriculares,Docentes,Voltar atras");
 		switch (menuV) {
 		case 1:
-			menuV = 3;
+			menuV = 4;
 			system("CLS");
 			cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tTrabalhador\n";
 			cout << info();
@@ -320,6 +352,36 @@ void Estudante::menuVisualizar()
 					system("PAUSE");
 					break;
 				default:
+					break;
+				}
+			}
+			break;
+		case 3:
+			menuVD = -1;
+			while (menuVD != 3)
+			{
+				system("CLS");
+				menuVD = getMenu("Todos os docentes,Meu tutor,Voltar atras");
+				switch (menuVD) {
+				case 1:
+					menuVD = 3;
+					system("CLS");
+					cout << "Sigla\tCodigo\tEmail\t\t    Nome\n";
+					for (size_t j = 0; j < feup[i]->getDocentes().size(); j++)
+					{
+						cout << feup[i]->getDocentes()[j]->info();
+					}
+					system("PAUSE");
+					break;
+				case 2:
+					menuVD = 3;
+					system("CLS");
+					cout << "Sigla\tCodigo\tEmail\t\t    Nome\n";
+					cout << getDocente()->info();
+					system("PAUSE");
+					break;
+				default:
+					menuVD = 3;
 					break;
 				}
 			}

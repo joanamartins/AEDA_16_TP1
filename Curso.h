@@ -6,6 +6,8 @@
 #include <fstream>
 #include "Ucurricular.h"
 #include "Estudante.h"
+#include "Docente.h"
+#include "sequentialSearch.h"
 using namespace std;
 
 class Curso {
@@ -13,17 +15,20 @@ class Curso {
 	string nome;
 	vector <Ucurricular *> ucurriculares;
 	vector <Estudante *> estudantes;
+	vector <Docente *> docentes;
 public:
 	Curso() {};
 	~Curso() {};
 	Curso(string sigla, string nome);
 	vector <Ucurricular *> getUCs() const;
 	vector <Estudante *> getEstudantes() const;
+	vector <Docente *> getDocentes() const;
 	int getAno(string codigo);
 	int getSemestre(string codigo);
 	void addUC(Ucurricular *uc);
 	void addEstudante(Estudante *est);
-	int getEstudanteAno(int i) const;
+	void addDocente(Docente * doc);
+	int getEstudanteAno(Estudante * est) const;		//useless function
 	void setUCs(const vector <Ucurricular *> &ucs);
 	void newStudent();
 	void readData(string file);

@@ -16,6 +16,11 @@ vector <Estudante *> Curso::getEstudantes() const
 	return estudantes;
 }
 
+vector <Docente *> Curso::getDocentes() const
+{
+	return docentes;
+}
+
 int Curso::getAno(string codigo)
 {
 	for (vector<Ucurricular *>::iterator i = ucurriculares.begin(); i < ucurriculares.end(); i++)
@@ -43,8 +48,14 @@ void Curso::addEstudante(Estudante *est)
 	estudantes.push_back(est);
 }
 
-int Curso::getEstudanteAno(int id) const
+void Curso::addDocente(Docente *doc)
 {
+	docentes.push_back(doc);
+}
+
+int Curso::getEstudanteAno(Estudante * est) const
+{
+	int id = sequentialSearch(getEstudantes(), est);
 	int ret = 0;
 	for (size_t i = 0; i < estudantes[id]->getResultados().size(); i++)
 	{
@@ -110,6 +121,7 @@ void Curso::newStudent()
 	estatuto_int--;
 
 	estudante_tmp = new Estudante(codigo, password, email, nome, estatuto_int);
+	estudante_tmp->getDocente();
 	addEstudante(estudante_tmp);
 	cout << "Estudante criado com sucesso\n";
 	system("PAUSE");
@@ -134,9 +146,11 @@ void Curso::readData(string file)
 	int vagas;
 	int ano = 0;
 	int semestre = 2;
+	int i = 0;
 	string areaCientifica = "test area";
 	Ucurricular *uc_tmp = new Ucurricular;
 	Estudante *est_tmp = new Estudante;
+	Docente *doc_tmp = new Docente;
 
 	ifstream curso;
 	curso.open(file);
@@ -162,7 +176,9 @@ void Curso::readData(string file)
 	getline(curso, line);
 
 	while (getline(curso, line) && line.length() > 0) {
-		if (line.find("Ano") != string::npos)
+		if (line == "Estudantes")
+			break;
+		else if (line.find("Ano") != string::npos)
 		{
 			ano++;
 			semestre -= 2;
@@ -203,46 +219,82 @@ void Curso::readData(string file)
 
 	getline(curso, line);
 	getline(curso, line);
-	while (getline(curso, line)) {
+	while (getline(curso, line) && line.length() > 0)
+	{
+		section = line;
+		section.erase(section.begin() + section.find("\t"), section.end());
+		sigla = section;
+		line.erase(line.begin(), line.begin() + line.find("\t") + 2);
+
 		section = line;
 		section.erase(section.begin() + section.find("\t"), section.end());
 		codigo = section;
 		line.erase(line.begin(), line.begin() + line.find("\t") + 2);
-		
-		section = line;
-		section.erase(section.begin() + section.find("\t"), section.end());
-		password = stoi(section);
-		line.erase(line.begin(), line.begin() + line.find("\t") + 1);
-		
+
 		section = line;
 		section.erase(section.begin() + section.find("\t"), section.end());
 		email = section;
 		line.erase(line.begin(), line.begin() + line.find("\t") + 1);
-		
+
 		section = line;
-		section.erase(section.begin() + section.find("  "), section.end());
+		i = 0;
+		while (section[i] == '\t')
+			section.erase(section.begin() + i);
+		//section.pop_back();
 		nome = section;
-		line.erase(line.begin(), line.begin() + line.find("  ") + 1);
 
-		section = line;
-		estatuto = stoi(section);
+		doc_tmp = new Docente(sigla, stoi(codigo), email, nome);
+		addDocente(doc_tmp);
+	}
 
-		est_tmp = new Estudante(codigo, password, email, nome, estatuto);
-
-		getline(curso, line);
-		getline(curso, line);
-		while (line.find('\t') == 0) {
-			line.erase(line.begin(), line.begin() + 1);
+	getline(curso, line);
+	getline(curso, line);
+	while (getline(curso, line) && line.length() > 0) {
+		if (line == "Docentes")
+			break;
+		else
+		{
 			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
 			codigo = section;
 			line.erase(line.begin(), line.begin() + line.find("\t") + 2);
-			resultado = stoi(line);
-			est_tmp->addUC(codigo, resultado);
+
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			password = stoi(section);
+			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			section = line;
+			section.erase(section.begin() + section.find("\t"), section.end());
+			email = section;
+			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
+
+			section = line;
+			section.erase(section.begin() + section.find("  "), section.end());
+			nome = section;
+			line.erase(line.begin(), line.begin() + line.find("  ") + 1);
+
+			section = line;
+			estatuto = stoi(section);
+
+			est_tmp = new Estudante(codigo, password, email, nome, estatuto);
 
 			getline(curso, line);
+			getline(curso, line);
+			while (line.find('\t') == 0) {
+				line.erase(line.begin(), line.begin() + 1);
+				section = line;
+				section.erase(section.begin() + section.find("\t"), section.end());
+				codigo = section;
+				line.erase(line.begin(), line.begin() + line.find("\t") + 2);
+				resultado = stoi(line);
+				est_tmp->addUC(codigo, resultado);
+
+				getline(curso, line);
+			}
+			//est_tmp->getDocente();
+			addEstudante(est_tmp);
 		}
-		addEstudante(est_tmp);
 	}
 	curso.close();
 }
@@ -254,33 +306,45 @@ void Curso::saveData(string file) const
 	int ano = 0;
 	int semestre = 0;
 	output << sigla << " - " << nome << "\n\n";
-	output << "Codigo\t\tSigla\tNome\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCreditos\tVagas\n";
-	for (size_t i = 0; i < getUCs().size(); i++)
+	if (getUCs().size() >= 0)
 	{
-		if (ano != getUCs()[i]->getAno())
+		output << "Codigo\t\tSigla\tNome\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCreditos\tVagas\n";
+		for (size_t i = 0; i < getUCs().size(); i++)
 		{
-			ano = getUCs()[i]->getAno();
-			semestre = 1;
-			output << ano << (char)186 << " Ano\n" << semestre << (char)186 << " Semestre\n";
+			if (ano != getUCs()[i]->getAno())
+			{
+				ano = getUCs()[i]->getAno();
+				semestre = 1;
+				output << ano << (char)186 << " Ano\n" << semestre << (char)186 << " Semestre\n";
+			}
+			else if (semestre != getUCs()[i]->getSemestre())
+			{
+				semestre = 2;
+				output << semestre << (char)186 << " Semestre\n";
+			}
+			output << getUCs()[i]->info();
 		}
-		else if (semestre != getUCs()[i]->getSemestre())
-		{
-			semestre = 2;
-			output << semestre << (char)186 << " Semestre\n";
-		}
-		output << getUCs()[i]->info();
 	}
-	if (getEstudantes().size() == 0)
-		return;
-	output << "\nEstudantes\nCodigo\t\t\tPassword\tEmail\t\t\t\t\tNome\t\t\t\t\t\t\t\t\tEstatuto\n";
-	for (size_t i = 0; i < getEstudantes().size(); i++)
+	if (getDocentes().size() > 0)
 	{
-		output << getEstudantes()[i]->info() << "Unidades curriculares frequentadas\n";
-		vector<pair<string, int>> resultados = getEstudantes()[i]->getResultados();
-		for (vector<pair<string, int>>::const_iterator j = resultados.begin(); j != resultados.end(); j++)
+		output << "\nDocentes\nSigla\tCodigo\tEmail\t\t    Nome\n";
+		for (size_t i = 0; i < getDocentes().size(); i++)
 		{
-			output << '\t' << (*j).first << "\t\t" << (*j).second << endl;
+			output << getDocentes()[i]->info();
 		}
-		output << endl;
+	}
+	if (getEstudantes().size() > 0)
+	{
+		output << "\nEstudantes\nCodigo\t\t\tPassword\tEmail\t\t\t\t\tNome\t\t\t\t\t\t\t\t\tEstatuto\n";
+		for (size_t i = 0; i < getEstudantes().size(); i++)
+		{
+			output << getEstudantes()[i]->info() << "Unidades curriculares frequentadas\n";
+			vector<pair<string, int>> resultados = getEstudantes()[i]->getResultados();
+			for (vector<pair<string, int>>::const_iterator j = resultados.begin(); j != resultados.end(); j++)
+			{
+				output << '\t' << (*j).first << "\t\t" << (*j).second << endl;
+			}
+			output << endl;
+		}
 	}
 }

@@ -20,19 +20,19 @@ EIC0016	     MPCP	Microprocessadores e Computadores Pessoais                    
 EIC0022	     TCOM	Teoria da Computacao                                                    6			1
 EIC0021	     MNUM	Metodos Numericos                                                       4.5			1
 EIC0014	    FISI2	Fisica II                                                               6			1
-EIC0013	     AEDA	Algoritmos e Estruturas de Dados                                        7.5			0
+EIC0013	     AEDA	Algoritmos e Estruturas de Dados                                        7.5			1
 EIC0020	     LCOM	Laboratorio de Computadores                                             6			1
 2º Semestre
-EIC0023	     BDAD	Bases de Dados                                                          6			0
-EIC0110	      CAL	Concepcao e Analise de Algoritmos                                       6			0
-EIC0019	     CGRA	Computacao Grafica                                                      6			0
-EIC0027	     SOPE	Sistemas Operativos                                                     6			0
-EIC0111	     LPOO	Laboratorio de Programacao Orientada por Objectos                       6			0
+EIC0023	     BDAD	Bases de Dados                                                          6			1
+EIC0110	      CAL	Concepcao e Analise de Algoritmos                                       6			1
+EIC0019	     CGRA	Computacao Grafica                                                      6			1
+EIC0027	     SOPE	Sistemas Operativos                                                     6			1
+EIC0111	     LPOO	Laboratorio de Programacao Orientada por Objectos                       6			1
 3º Ano
 1º Semestre
 EIC0026	     PLOG	Programacao em Logica                                                   4.5			0
-EIC0084	     LAIG	Laboratorio de Aplicacoes com Interface Grafica                         7.5			0
-EIC0024	     ESOF	Engenharia de Software                                                  6			0
+EIC0084	     LAIG	Laboratorio de Aplicacoes com Interface Grafica                         7.5			1
+EIC0024	     ESOF	Engenharia de Software                                                  6			1
 EIC0032	     RCOM	Redes de Computadores                                                   6			1
 EIC0112	      LTW	Linguagens e Tecnologias Web                                            6			1
 2º Semestre
@@ -51,6 +51,24 @@ EIC0039	     MFES	Metodos Formais em Engenharia de Software                     
 2º Semestre
 EIC0037	     IOPE	Investigacao Operacional                                                4.5			1
 EIC0106	     LGPR	Laboratorio de Gestao de Projectos                                      7.5			1
+
+Docentes
+Sigla	Codigo	Email		    Nome
+GTD	208741	gtd@fe.up.pt        Gabriel de Sousa Torcato David
+RMV	206415	rmvidal@fe.up.pt    Raul Fernando de Almeida Moreira Vidal
+AFCC	19920	acoelho@fe.up.pt    Antonio Fernando Vasconcelos Cunha Castro Coelho
+CRC	211935	ccastro@fe.up.pt    Catarina Rosa Santos Ferreira de Castro
+LMS	208257	lcsousa@fe.up.pt    Luisa Maria Pimenta Abreu Costa Sousa
+AMF	211573	ferreira@fe.up.pt   Antonio Joaquim Mendes Ferreira
+AMAN	53681	ananeves@fe.up.pt   Ana Maria Azevedo Neves
+MFST	22605	mfirmino@fe.up.pt   Manuel Firmino da Silva Torres
+SPF	245546	sara@fe.up.pt       Sara Maria Pinho Ferreira
+JLMB	11706	jlborges@fe.up.pt   Jose Luis Cabral Moura Borges
+JAS	208785	jsilva@fe.up.pt     Jorge Alves da Silva
+JEV	211847	villate@fe.up.pt    Jaime Enrique Villate Matiz
+JCS	208062	cesarsa@fe.up.pt    Jose Manuel de Almeida Cesar de Sa
+JTB	208228	jtrigo@fe.up.pt     Jose Augusto Trigo Barbosa
+JCF	210963	jcf@fe.up.pt        João Paulo de Castro Canas Ferreira
 
 Estudantes
 Codigo			Password	Email					Nome									Estatuto
@@ -71,14 +89,6 @@ Unidades curriculares frequentadas
 	EIC0021		10
 	EIC0014		10
 	EIC0020		10
-	EIC0013		-1
-	EIC0023		-1
-	EIC0110		-1
-	EIC0019		-1
-	EIC0027		-1
-	EIC0111		-1
-	EIC0084		-1
-	EIC0024		-1
 
 up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mae Estudante
 Unidades curriculares frequentadas

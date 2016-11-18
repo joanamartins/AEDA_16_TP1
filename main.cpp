@@ -2,7 +2,7 @@
 #include <fstream>
 #include <windows.h>
 #include <algorithm>
-//#include <stdlib.h>
+#include <cstdlib>
 #include "Curso.h"
 #include "Ucurricular.h"
 #include "Estudante.h"
@@ -23,6 +23,11 @@ int main()
 	HWND console = GetConsoleWindow();
 	MoveWindow(console, 100, 100, 1200, 700, TRUE);
 
+	for (size_t i = 0; i < feup[0]->getEstudantes().size(); i++)
+	{
+		feup[0]->getEstudantes()[i]->getDocente();
+	}
+
 	int mainMenu = -1;
 	while (mainMenu != 3) {
 		system("CLS");
@@ -31,8 +36,8 @@ int main()
 		case 1:
 			try {
 				//bypass login() for testing purposes
-				feup[0]->getEstudantes()[0]->menu();
-				//login(feup);
+				//feup[0]->getEstudantes()[1]->menu();
+				login();
 			}
 			catch (EstudanteInvalido &est) {
 				est.usernameInvalido();

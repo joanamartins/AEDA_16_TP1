@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -12,8 +13,9 @@ using namespace std;
 
 extern vector<Curso *> feup;
 
-class Curso;
+//class Curso;
 class Ucurricular;
+class Docente;
 
 class Estudante {
 	string codigo;
@@ -38,6 +40,7 @@ public:
 	unsigned long getPassword() const;
 	vector<pair<string, int>> getResultados() const;
 	int getAno() const;
+	Docente * getDocente();
 	void setEmail(string email);
 	void setResultados(const vector <Ucurricular *> &ucs);
 	void addUC(string codigo, int resultado);

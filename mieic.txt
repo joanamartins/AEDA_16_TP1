@@ -52,6 +52,24 @@ EIC0039	     MFES	Metodos Formais em Engenharia de Software                     
 EIC0037	     IOPE	Investigacao Operacional                                                4.5			1
 EIC0106	     LGPR	Laboratorio de Gestao de Projectos                                      7.5			1
 
+Docentes
+Sigla	Codigo		Email					Nome
+GTD		208741		gtd@fe.up.pt			Gabriel de Sousa Torcato David
+RMV		206415		rmvidal@fe.up.pt		Raul Fernando de Almeida Moreira Vidal
+AFCC	419920		acoelho@fe.up.pt		Antonio Fernando Vasconcelos Cunha Castro Coelho
+CRC		211935		ccastro@fe.up.pt		Catarina Rosa Santos Ferreira de Castro
+LMS		208257		lcsousa@fe.up.pt		Luisa Maria Pimenta Abreu Costa Sousa
+AMF		211573		ferreira@fe.up.pt		Antonio Joaquim Mendes Ferreira
+AMAN	453681		ananeves@fe.up.pt		Ana Maria Azevedo Neves
+MFST	322605		mfirmino@fe.up.pt		Manuel Firmino da Silva Torres
+SPF		245546		sara@fe.up.pt			Sara Maria Pinho Ferreira
+JLMB	211706		jlborges@fe.up.pt		Jose Luis Cabral Moura Borges
+JAS		208785		jsilva@fe.up.pt			Jorge Alves da Silva
+JEV		211847		villate@fe.up.pt		Jaime Enrique Villate Matiz
+JCS		208062		cesarsa@fe.up.pt		Jose Manuel de Almeida Cesar de Sa
+JTB		208228		jtrigo@fe.up.pt			Jose Augusto Trigo Barbosa
+JCF		210963		jcf@fe.up.pt			João Paulo de Castro Canas Ferreira
+
 Estudantes
 Codigo			Password	Email					Nome									Estatuto
 up201405308		190865266	up201405308@fe.up.pt	Luis Miguel da Rocha Alves              2
