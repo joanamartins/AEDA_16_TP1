@@ -11,6 +11,11 @@ vector <Ucurricular *> Curso::getUCs() const
 	return ucurriculares; 
 }
 
+vector <Optativa *> Curso::getOpts() const
+{
+	return optativas;
+}
+
 vector <Estudante *> Curso::getEstudantes() const
 {
 	return estudantes;
@@ -194,12 +199,12 @@ void Curso::readData(string file)
 	while (getline(curso, line) && line.length() > 0) {
 		if (line == "Optativas")
 			break;
-		else if (line.find("Ano") != string::npos)
+		else if (line.find("Ano") < 7)
 		{
 			ano++;
 			semestre -= 2;
 		}
-		else if (line.find("Semestre") != string::npos)
+		else if (line.find("Semestre") < 7)
 		{
 			semestre++;
 		}
@@ -236,16 +241,16 @@ void Curso::readData(string file)
 	getline(curso, line);
 	getline(curso, line);
 	ano = 3;
-	semestre = 1;
+	semestre = 3;
 	while (getline(curso, line) && line.length() > 0) {
 		if (line == "Docentes")
 			break;
-		else if (line.find("Ano") != string::npos)
+		else if (line.find("Ano") < 7)
 		{
 			ano++;
-			//semestre -= 2;
+			semestre -= 2;
 		}
-		else if (line.find("Semestre") != string::npos)
+		else if (line.find("Semestre") < 7)
 		{
 			semestre++;
 		}
@@ -398,7 +403,7 @@ void Curso::saveData(string file) const
 				semestre = 2;
 				output << semestre << (char)186 << " Semestre\n";
 			}
-			output << getUCs()[i]->info();
+			output << getUCs()[i]->info('\n');
 		}
 	}
 	if (getDocentes().size() > 0)

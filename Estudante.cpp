@@ -435,12 +435,24 @@ void Estudante::menuInscrever()
 	int i = 0;
 	vector <Ucurricular *> ucs = feup[i]->getUCs();
 	vector <Ucurricular *> ucs_tmp;
+	vector <Optativa *> opt = feup[i]->getOpts();
+	vector <Optativa *> opt_tmp;
+	bool optativas = getAno() >= 4;
 	ucs_tmp.clear();
+	opt_tmp.clear();
 	for (size_t l = 0; l < ucs.size(); l++)
 	{
 		if (ucs[l]->getAno() > getAno())
 		{
 			ucs.erase(ucs.begin() + l);
+			l--;
+		}
+	}
+	for (size_t l = 0; l < opt.size(); l++)
+	{
+		if (opt[l]->getAno() > getAno())
+		{
+			opt.erase(opt.begin() + l);
 			l--;
 		}
 	}
@@ -451,6 +463,14 @@ void Estudante::menuInscrever()
 			if (resultados[k].first == ucs[l]->getCodigo())
 			{
 				ucs.erase(ucs.begin() + l);
+				l--;
+			}
+		}
+		for (size_t l = 0; l < opt.size(); l++)
+		{
+			if (resultados[k].first == opt[l]->getCodigo())
+			{
+				opt.erase(opt.begin() + l);
 				l--;
 			}
 		}
@@ -469,20 +489,28 @@ void Estudante::menuInscrever()
 		}
 	}
 	stringstream ss;
+	int lastUC = 1;
 	for (size_t l = 0; l < ucs.size(); l++)
 	{
-		ss << ucs[l]->getAno() << '\t' << ucs[l]->getSemestre() << '\t' << ucs[l]->info(0) << ',';
+		ss << ucs[l]->getAno() << '\t' << ucs[l]->getSemestre() << '\t' << ucs[l]->info(',');
+		lastUC++;
+	}
+	int menuIUCmax = lastUC;
+	if (optativas)
+	{
+		for (size_t l = 0; l < opt.size(); l++)
+		{
+			ss << opt[l]->getAno() << '\t' << opt[l]->getSemestre() << '\t' << opt[l]->info(',');
+			menuIUCmax++;
+		}
 	}
 	ss << "Finalizar";
 	string menuOptions = ss.str();
-	string menuTitle = "  Ano\tSemestre Codigo\t    Sigla\tNome\t\t\t\t\t\t\t\t\tCreditos\t\tVagas";
-	int menuIUCmax = 0;
-	for (size_t i = 0; i < ss.str().length(); i++)
-		if (ss.str()[i] == ',')
-			menuIUCmax++;
-	menuIUCmax++;
+	string menuTitle = "  Ano\tSemestre Codigo\t    Sigla\tNome\t\t\t\t\t\t\t\t\tCreditos\tVagas";
 	string menuCredits;
-	bool found;
+	string recTitle, recOptions;
+	int recIUC;
+	bool found, addIt;
 	while (menuIUC != menuIUCmax)
 	{
 		ss.str(string());
@@ -493,10 +521,10 @@ void Estudante::menuInscrever()
 		system("CLS");
 		cout << "Selecione uma cadeira nao inscrita para se inscrever, ou uma inscrita para anular a inscricao\n";
 		if (ucs_tmp.size() > 0)
-			ss << "Cadeiras inscritas:\n  Ano\tSemestre Codigo\t    Sigla\tNome\t\t\t\t\t\t\t\t\tCreditos\t\tVagas\n";;
+			ss << "Cadeiras inscritas:\n  Ano\tSemestre Codigo\t    Sigla\tNome\t\t\t\t\t\t\t\t\tCreditos\tVagas\n";;
 		for (size_t l = 0; l < ucs_tmp.size(); l++)
 		{
-			ss << "   " << ucs_tmp[l]->getAno() << '\t' << ucs_tmp[l]->getSemestre() << '\t' << ucs_tmp[l]->info();
+			ss << "   " << ucs_tmp[l]->getAno() << '\t' << ucs_tmp[l]->getSemestre() << '\t' << ucs_tmp[l]->info('\n');
 		}
 		string cadeirasEscolhidas = ss.str();
 		ss.str(string());
@@ -504,54 +532,139 @@ void Estudante::menuInscrever()
 		if (menuIUC == menuIUCmax)
 			break;
 		found = false;
-		for (size_t l = 0; l < ucs_tmp.size(); l++)
+		if (menuIUC < lastUC)
 		{
-			if (ucs[menuIUC - 1] == ucs_tmp[l])
-			{
-				found = true;
-				break;
-			}
-		}
-		if (!found)
-		{
-			creditos += ucs[menuIUC - 1]->getCreditos();
-			if (creditos > 75)
-			{
-				creditos -= ucs[menuIUC - 1]->getCreditos();
-				system("CLS");
-				cout << "Nao pode ultrapassar 75 creditos por ano!\n";
-				system("PAUSE");
-			}
-			/*else if (ucs[menuIUC - 1]->getVagas() <= 0)
-			{
-				creditos -= ucs[menuIUC - 1]->getCreditos();
-				system("CLS");
-				cout << "A cadeira " << ucs[menuIUC - 1]->getSigla() << " nao tem vagas.\n";
-				system("PAUSE");
-			}*/
-			else
-			{
-				//ucs[menuIUC - 1]->increaseVacancy(-1);
-				ucs_tmp.push_back(ucs[menuIUC - 1]);
-			}
-		}
-		else
-		{
-			//ucs[menuIUC - 1]->increaseVacancy(1);
-			creditos -= ucs[menuIUC - 1]->getCreditos();
 			for (size_t l = 0; l < ucs_tmp.size(); l++)
 			{
 				if (ucs[menuIUC - 1] == ucs_tmp[l])
 				{
-					ucs_tmp.erase(ucs_tmp.begin() + l);
-					l--;
+					found = true;
 					break;
 				}
 			}
+			if (!found)
+			{
+				creditos += ucs[menuIUC - 1]->getCreditos();
+				if (creditos > 75)
+				{
+					creditos -= ucs[menuIUC - 1]->getCreditos();
+					system("CLS");
+					cout << "Nao pode ultrapassar 75 creditos por ano!\n";
+					system("PAUSE");
+				}
+				else
+				{
+					ucs_tmp.push_back(ucs[menuIUC - 1]);
+				}
+			}
+			else
+			{
+				creditos -= ucs[menuIUC - 1]->getCreditos();
+				for (size_t l = 0; l < ucs_tmp.size(); l++)
+				{
+					if (ucs[menuIUC - 1] == ucs_tmp[l])
+					{
+						ucs_tmp.erase(ucs_tmp.begin() + l);
+						l--;
+						break;
+					}
+				}
+			}
 		}
+		else
+		{
+			for (size_t l = 0; l < ucs_tmp.size(); l++)
+			{
+				if (opt[menuIUC - 1] == ucs_tmp[l])
+				{
+					found = true;
+					break;
+				}
+			}
+			if (!found)
+			{
+				creditos += opt[menuIUC - 1]->getCreditos();
+				addIt = true;
+				if (creditos > 75)
+				{
+					creditos -= opt[menuIUC - 1]->getCreditos();
+					system("CLS");
+					cout << "Nao pode ultrapassar 75 creditos por ano!\n";
+					system("PAUSE");
+					addIt = false;
+				}
+				else if (opt[menuIUC - 1]->getVagas() <= 0)
+				{
+					creditos -= opt[menuIUC - 1]->getCreditos();
+					system("CLS");
+					cout << "A cadeira " << opt[menuIUC - 1]->getSigla() << " nao tem vagas.\n";
+					opt_tmp.clear();
+					for (size_t l = 0; l < opt.size(); l++)
+					{
+						if (opt[l]->getArea() == opt[menuIUC - 1]->getArea() && opt[l]->getVagas() > 0)
+							opt_tmp.push_back(opt[l]);
+					}
+					if (opt_tmp.size() == 0)
+					{
+						addIt = false;
+						system("PAUSE");
+					}
+					else
+					{
+						recTitle = "Cadeiras sugeridas na area \"" + opt[menuIUC - 1]->getArea() + "\"\n";
+						ss.str(string());
+						for (size_t l = 0; l < opt_tmp.size(); l++)
+						{
+							if (l > 0)
+								ss << ',';
+							ss << opt_tmp[l]->getAno() << '\t' << opt_tmp[l]->getSemestre() << '\t' << opt_tmp[l]->info(' ');
+						}
+						recOptions = ss.str();
+						recIUC = getMenu(recOptions, recTitle);
+						addIt = false;
+						for (size_t l = 0; l < opt.size(); l++)
+						{
+							if (opt_tmp[recIUC - 1]->getCodigo() == opt[l]->getCodigo())
+							{
+								menuIUC = l + 1;
+								addIt = true;
+								break;
+							}
+						}
+					}
+				}
+				if (addIt)
+				{
+					opt[menuIUC - 1]->increaseVacancy(-1);
+					ucs_tmp.push_back(opt[menuIUC - 1]);
+				}
+			}
+			else
+			{
+				opt[menuIUC - 1]->increaseVacancy(1);
+				creditos -= opt[menuIUC - 1]->getCreditos();
+				for (size_t l = 0; l < ucs_tmp.size(); l++)
+				{
+					if (opt[menuIUC - 1] == ucs_tmp[l])
+					{
+						ucs_tmp.erase(ucs_tmp.begin() + l);
+						l--;
+						break;
+					}
+				}
+			}
+		}
+		ss.str(string());
 		for (size_t l = 0; l < ucs.size(); l++)
 		{
-			ss << ucs[l]->getAno() << '\t' << ucs[l]->getSemestre() << '\t' << ucs[l]->info(0) << ',';
+			ss << ucs[l]->getAno() << '\t' << ucs[l]->getSemestre() << '\t' << ucs[l]->info(',');
+		}
+		if (optativas)
+		{
+			for (size_t l = 0; l < opt.size(); l++)
+			{
+				ss << opt[l]->getAno() << '\t' << opt[l]->getSemestre() << '\t' << opt[l]->info(',');
+			}
 		}
 		ss << "Finalizar";
 		menuOptions = ss.str();

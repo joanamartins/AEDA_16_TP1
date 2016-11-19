@@ -23,6 +23,7 @@ public:
 	~Curso() {};
 	Curso(string sigla, string nome);
 	vector <Ucurricular *> getUCs() const;
+	vector <Optativa *> getOpts() const;
 	vector <Estudante *> getEstudantes() const;
 	vector <Docente *> getDocentes() const;
 	int getAno(string codigo);

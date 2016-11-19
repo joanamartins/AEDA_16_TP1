@@ -25,13 +25,11 @@ public:
 	float getCreditos() const;
 	int getAno() const;
 	int getSemestre() const;
-	void increaseVacancy(int i);
-	string info() const;
-	string info(int i) const;
+	virtual string info(char c) const;
 	bool operator=(Ucurricular that);
 };
 
-class Optativa : private Ucurricular {
+class Optativa : public Ucurricular {
 	int vagas;
 	string areaCientifica;
 public:
@@ -40,4 +38,6 @@ public:
 	Optativa(string codigo, string sigla, string nome, float creditos, int vagas, int ano, int semestre, string areaCientifica);
 	int getVagas() const;
 	string getArea() const;
+	string info(char c) const;
+	void increaseVacancy(int i);
 };

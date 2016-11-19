@@ -40,23 +40,13 @@ int Ucurricular::getSemestre() const
 	return semestre;
 }
 
-string Ucurricular::info() const
+string Ucurricular::info(char c) const
 {
 	stringstream ss;
 	ss << codigo << "\t" << setw(9) << sigla << "\t" << nome;
 	for (size_t i = 0; i < 72 - nome.length(); i += 1)
 		ss << ' ';
-	ss << creditos << endl;
-	return ss.str();
-}
-
-string Ucurricular::info(int i) const
-{
-	stringstream ss;
-	ss << codigo << "\t" << setw(9) << sigla << "\t" << nome;
-	for (size_t i = 0; i < 72 - nome.length(); i += 1)
-		ss << ' ';
-	ss << creditos;
+	ss << creditos << c;
 	return ss.str();
 }
 
@@ -79,4 +69,14 @@ int Optativa::getVagas() const
 string Optativa::getArea() const
 {
 	return areaCientifica;
+}
+
+string Optativa::info(char c) const
+{
+	return Ucurricular::info(0) + "\t\t" + to_string(getVagas()) + c;
+}
+
+void Optativa::increaseVacancy(int i)
+{
+	vagas += i;
 }

@@ -20,9 +20,9 @@ int main()
 	mieec.readData("mieec.txt");
 	feup.push_back(&mieec);
 
-	//system("mode 120,40");
-	HWND console = GetConsoleWindow();
-	MoveWindow(console, 100, 100, 1200, 700, TRUE);
+	system("mode 160,80");
+	//HWND console = GetConsoleWindow();
+	//MoveWindow(console, 100, 100, 1200, 700, TRUE);
 
 	for (size_t i = 0; i < feup[0]->getEstudantes().size(); i++)
 	{
@@ -37,8 +37,8 @@ int main()
 		case 1:
 			try {
 				//bypass login() for testing purposes
-				//feup[0]->getEstudantes()[1]->menu();
-				login();
+				feup[0]->getEstudantes()[1]->menu();
+				//login();
 			}
 			catch (EstudanteInvalido &est) {
 				est.usernameInvalido();

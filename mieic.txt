@@ -56,50 +56,50 @@ Optativas
 Codigo		Sigla	Area								Nome															Creditos	Vagas
 4º Ano
 2º Semestre
-EIC0088		APSI 	Interacção e Multimédia				Algoritmos de Processamento de Sinal							6			1
+EIC0088		APSI 	Interaccao e Multimedia				Algoritmos de Processamento de Sinal							6			1
 EIC0048		ASSO	Engenharia de Software				Arquitectura de Sistemas de Software							6			1
-EIC0095		AGRS	Sistemas Operativos e Redes			Arquitectura e Gestão de Redes e Sistemas						6			0
-EIC0089		CPAR	Programação							Computação Paralela												6			1
-EIC0082		CMO     Sistemas Operativos e Redes			Comunicações Móveis												6			1
-EIC0090		DJCO	Interacção e Multimédia				Desenvolvimento de Jogos de Computador							6			1
+EIC0095		AGRS	Sistemas Operativos e Redes			Arquitectura e Gestao de Redes e Sistemas						6			0
+EIC0089		CPAR	Programacao							Computacao Paralela												6			1
+EIC0082		CMOV	Sistemas Operativos e Redes			Comunicacoes Moveis												6			1
+EIC0090		DJCO	Interaccao e Multimedia				Desenvolvimento de Jogos de Computador							6			1
 EIC0053		ERSS	Engenharia de Software				Engenharia de Requisitos de Sistemas de Software				6			0
-EIC0091		GOLO	Métodos Quantitativos e Gestão		Gestão de Operações e Logística									6			1
-EIC0107		LAPD	Sistemas de Informação				Linguagens de Anotação e Processamento de Documentos			6			1
-EIC0061		MARK	Métodos Quantitativos e Gestão		Marketing														6			1
-EIC0098		MSSI	Inteligência Artificial				Modelação e Simulação de Sistemas								6			0
-EIC0064		MNSE	Interacção e Multimédia				Multimédia e Novos Serviços										6			1
-EIC0072		SSIN	Sistemas Operativos e Redes			Segurança em Sistemas Informáticos								6			1
-EIC0093		SSEN	Automação Industrial				Sinais e Sensores												6			0
-EIC0073		SCRI	Automação Industrial				Sistemas Críticos												6			1
-EIC0102		SETR	Automação Industrial				Sistemas Embutidos e de Tempo Real								6			0
-EIC0094		SGEO	Sistemas de Informação				Sistemas Geoespaciais											6			1
-EIC0075		SINS	Automação Industrial				Sistemas Industriais											6			0
-EIC0076		TBDA	Sistemas de Informação				Tecnologias de Bases de Dados									6			0
-EIC0077		TDIN	Sistemas Operativos e Redes			Tecnologias de Distribuição e Integração						6			1
+EIC0091		GOLO	Metodos Quantitativos e Gestao		Gestao de Operacoes e Logistica									6			1
+EIC0107		LAPD	Sistemas de Informacao				Linguagens de Anotacao e Processamento de Documentos			6			1
+EIC0061		MARK	Metodos Quantitativos e Gestao		Marketing														6			1
+EIC0098		MSSI	Inteligencia Artificial				Modelacao e Simulacao de Sistemas								6			0
+EIC0064		MNSE	Interaccao e Multimedia				Multimedia e Novos Servicos										6			1
+EIC0072		SSIN	Sistemas Operativos e Redes			Seguranca em Sistemas Informaticos								6			1
+EIC0093		SSEN	Automacao Industrial				Sinais e Sensores												6			0
+EIC0073		SCRI	Automacao Industrial				Sistemas Criticos												6			1
+EIC0102		SETR	Automacao Industrial				Sistemas Embutidos e de Tempo Real								6			0
+EIC0094		SGEO	Sistemas de Informacao				Sistemas Geoespaciais											6			1
+EIC0075		SINS	Automacao Industrial				Sistemas Industriais											6			0
+EIC0076		TBDA	Sistemas de Informacao				Tecnologias de Bases de Dados									6			0
+EIC0077		TDIN	Sistemas Operativos e Redes			Tecnologias de Distribuicao e Integracao						6			1
 5º Ano
 1º Semestre
-EIC0044		APIN	Métodos Quantitativos e Gestão		Análise de Projectos de Investimento							6			1
-EIC0046		ADAD	Sistemas de Informação				Armazéns de Dados												6			1
-EIC0049		AACO	Arquitectura de Computadores		Arquitecturas Avançadas de Computadores							6			0
-EIC0050		CMOV	Sistemas Operativos e Redes			Computação Móvel												6			1
-EIC0108		DAPI	Sistemas de Informação				Descrição, Armazenamento e Pesquisa de Informação				6			0
-EIC0096		ECAC	Inteligência Artificial				Extracção de Conhecimento e Aprendizagem Computacional			6			1
-EIC0109		GQUA	Métodos Quantitativos e Gestão		Gestão da Qualidade												6			1
-EIC0097		GIEM	Sistemas de Informação				Gestão de Informação Empresarial								6			1
-EIC0057		IPCO	Interacção e Multimédia				Interacção Pessoa-Computador									6			0
-EIC0062		MADS	Engenharia de Software				Metodologias Ágeis de Desenvolvimento de Software				6			0
-EIC0067		PESI	Sistemas de Informação				Planeamento Estratégico de Sistemas de Informação				6			1
-EIC0068		PFAL	Interacção e Multimédia				Processamento da Fala											6			1
-EIC0070		RVAU	Interacção e Multimédia				Realidade Virtual e Aumentada									6			0
-EIC0071		ROBO	Inteligência Artificial				Robotica														6			1
-EIC0072		SSIN	Sistemas Operativos e Redes			Segurança em Sistemas Informáticos								6			1
-EIC0099		SESI	Engenharia de Software				Seminário de Engenharia de Software e Sistemas de Informação	6			0
-EIC0100		SRTI	Sistemas Operativos e Redes			Seminário de Redes e Tecnologias da Informação					6			1
-EIC0101		SSIM	Interacção e Multimédia				Seminário de Sistemas Inteligentes, Interacção e Multimédia		6			0
-EIC0092		SRSI	Sistemas Operativos e Redes			Serviços de Rede e de Sistema									6			1
-EIC0074		SADE	Métodos Quantitativos e Gestão		Sistemas de Apoio à Decisão										6			1
-EIC0113		TVVS	Engenharia de Software				Teste, Verificação e Validação de Software						6			0
-EIC0104		VCOM	Interacção e Multimédia				Visão por Computador											6			0	
+EIC0044		APIN	Metodos Quantitativos e Gestao		Analise de Projectos de Investimento							6			1
+EIC0046		ADAD	Sistemas de Informacao				Armazens de Dados												6			1
+EIC0049		AACO	Arquitectura de Computadores		Arquitecturas Avancadas de Computadores							6			0
+EIC0050		CMOV	Sistemas Operativos e Redes			Computacao Movel												6			1
+EIC0108		DAPI	Sistemas de Informacao				Descricao Armazenamento e Pesquisa de Informacao				6			0
+EIC0096		ECAC	Inteligencia Artificial				Extraccao de Conhecimento e Aprendizagem Computacional			6			1
+EIC0109		GQUA	Metodos Quantitativos e Gestao		Gestao da Qualidade												6			1
+EIC0097		GIEM	Sistemas de Informacao				Gestao de Informacao Empresarial								6			1
+EIC0057		IPCO	Interaccao e Multimedia				Interaccao Pessoa-Computador									6			0
+EIC0062		MADS	Engenharia de Software				Metodologias ageis de Desenvolvimento de Software				6			0
+EIC0067		PESI	Sistemas de Informacao				Planeamento Estrategico de Sistemas de Informacao				6			1
+EIC0068		PFAL	Interaccao e Multimedia				Processamento da Fala											6			1
+EIC0070		RVAU	Interaccao e Multimedia				Realidade Virtual e Aumentada									6			0
+EIC0071		ROBO	Inteligencia Artificial				Robotica														6			1
+EIC0072		SSIN	Sistemas Operativos e Redes			Seguranca em Sistemas Informaticos								6			1
+EIC0099		SESI	Engenharia de Software				Seminario de Engenharia de Software e Sistemas de Informacao	6			0
+EIC0100		SRTI	Sistemas Operativos e Redes			Seminario de Redes e Tecnologias da Informacao					6			1
+EIC0101		SSIM	Interaccao e Multimedia				Seminario de Sistemas Inteligentes Interaccao e Multimedia		6			0
+EIC0092		SRSI	Sistemas Operativos e Redes			Servicos de Rede e de Sistema									6			1
+EIC0074		SADE	Metodos Quantitativos e Gestao		Sistemas de Apoio a Decisao										6			1
+EIC0113		TVVS	Engenharia de Software				Teste Verificacao e Validacao de Software						6			0
+EIC0104		VCOM	Interaccao e Multimedia				Visao por Computador											6			0	
 
 Docentes
 Sigla	Codigo		Email					Nome
@@ -117,7 +117,7 @@ JAS		208785		jsilva@fe.up.pt			Jorge Alves da Silva
 JEV		211847		villate@fe.up.pt		Jaime Enrique Villate Matiz
 JCS		208062		cesarsa@fe.up.pt		Jose Manuel de Almeida Cesar de Sa
 JTB		208228		jtrigo@fe.up.pt			Jose Augusto Trigo Barbosa
-JCF		210963		jcf@fe.up.pt			João Paulo de Castro Canas Ferreira
+JCF		210963		jcf@fe.up.pt			Joao Paulo de Castro Canas Ferreira
 
 Estudantes
 Codigo			Password	Email					Nome									Estatuto
@@ -138,25 +138,42 @@ Unidades curriculares frequentadas
 	EIC0021		10
 	EIC0014		10
 	EIC0020		10
+	EIC0040		20
 
 up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  4
 Unidades curriculares frequentadas
-	EIC0004		17
-	EIC0083		16
-	EIC0005		15
-	EIC0011		11
-	FEUP002		15
-	EIC0003		11
-	EIC0105		10
-	EIC0012		10
-	EIC0010		10
-	EIC0009		10
-	EIC0016		10
-	EIC0022		10
-	EIC0021		10
-	EIC0014		10
-	EIC0013		10
-	EIC0020		10
+	EIC0011		20
+	EIC0083		20
+	EIC0005		20
+	EIC0004		20
+	EIC0003		20
+	FEUP002		20
+	EIC0105		20
+	EIC0012		20
+	EIC0010		20
+	EIC0009		20
+	EIC0016		20
+	EIC0022		20
+	EIC0021		20
+	EIC0014		20
+	EIC0013		20
+	EIC0020		20
+	EIC0023		20
+	EIC0110		20
+	EIC0019		20
+	EIC0027		20
+	EIC0111		20
+	EIC0026		20
+	EIC0084		20
+	EIC0024		20
+	EIC0032		20
+	EIC0112		20
+	EIC0085		20
+	EIC0029		20
+	EIC0028		20
+	EIC0036		20
+	EIC0031		20
+	EIC0040		20
 
 up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  6
 Unidades curriculares frequentadas
