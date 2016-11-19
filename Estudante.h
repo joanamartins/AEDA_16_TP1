@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include "Date.h"
 #include "Exceptions.h"
 #include "Menus.h"
 using namespace std;
@@ -24,6 +25,7 @@ class Estudante {
 	string email;
 	string nome;
 	int estatuto;
+	Date * dataInscricao;
 	vector<pair<string, int>> resultados;
 public:
 	Estudante() {};
@@ -43,6 +45,7 @@ public:
 	vector<pair<string, int>> getResultados() const;
 	int getAno() const;
 	Docente * getDocente();
+	void setDate();
 	void setEmail(string email);
 	void setResultados(const vector <Ucurricular *> &ucs);
 	void addUC(string codigo, int resultado);

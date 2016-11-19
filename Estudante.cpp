@@ -23,6 +23,7 @@ Estudante::Estudante(string codigo, string password, string email, string nome, 
 	this->email = email;
 	this->nome = nome;
 	this->estatuto = estatuto;
+	this->dataInscricao = new Date(0);
 	this->password = hashing(password);
 }
 
@@ -31,6 +32,7 @@ Estudante::Estudante(string codigo, unsigned long password, string email, string
 	this->email = email;
 	this->nome = nome;
 	this->estatuto = estatuto;
+	this->dataInscricao = new Date(0);
 	this->password = password;
 }
 
@@ -47,6 +49,7 @@ Estudante::Estudante(string codigo, string password, string email, string nome, 
 	this->email = email;
 	this->nome = nome;
 	this->estatuto = getEstatuto(estatuto);
+	this->dataInscricao = new Date(0);
 	this->password = hashing(password);
 }
 
@@ -55,6 +58,7 @@ Estudante::Estudante(string codigo, unsigned long password, string email, string
 	this->email = email;
 	this->nome = nome;
 	this->estatuto = getEstatuto(estatuto);
+	this->dataInscricao = new Date(0);
 	this->password = password;
 }
 
@@ -63,7 +67,12 @@ string Estudante::info() const {
 	ss << codigo << "\t\t" << password << "\t" << email << "\t" << nome;
 	for (size_t i = 0; i < 40 - nome.length(); i += 1)
 		ss << ' ';
-	ss << estatutos[estatuto] << endl;
+	ss << estatutos[estatuto] << '\t';
+	if (dataInscricao->getDate() == "0/0/0")
+		ss << "N/A";
+	else
+		ss << dataInscricao->getDate();
+	ss << endl;
 	return ss.str();
 }
 
@@ -137,6 +146,11 @@ Docente * Estudante::getDocente()
 	if (i > 0)
 		i--;
 	return feup[0]->getDocentes()[i];
+}
+
+void Estudante::setDate()
+{
+	dataInscricao = new Date();
 }
 
 void Estudante::setEmail(string email)
@@ -233,7 +247,7 @@ void Estudante::menuVisualizar()
 		case 1:
 			menuV = 4;
 			system("CLS");
-			cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tEstatuto\n";
+			cout << "Codigo\t\t\tPassword\tEmail\t\t\tNome\t\t\t\t\tEstatuto\t\tData de Inscricao\n";
 			cout << info();
 			system("PAUSE");
 			break;
@@ -672,6 +686,7 @@ void Estudante::menuInscrever()
 
 	feup[i]->setUCs(ucs);
 	setResultados(ucs_tmp);
+	setDate();
 	system("PAUSE");
 }
 
