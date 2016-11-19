@@ -10,10 +10,8 @@ class Ucurricular {
 	string sigla;
 	string nome;
 	float creditos;
-	//int vagas;
 	int ano;
 	int semestre;
-	//string areaCientifica;
 public:
 	Ucurricular() {};
 	~Ucurricular() {};
@@ -21,7 +19,6 @@ public:
 	string getCodigo() const;
 	string getSigla() const;
 	string getNome() const;
-	//int getVagas() const;
 	float getCreditos() const;
 	int getAno() const;
 	int getSemestre() const;

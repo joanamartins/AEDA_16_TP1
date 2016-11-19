@@ -56,7 +56,7 @@ Optativas
 Codigo		Sigla	Area								Nome															Creditos	Vagas
 4º Ano
 2º Semestre
-EIC0088		APSI 	Interaccao e Multimedia				Algoritmos de Processamento de Sinal							6			1
+EIC0088		APSI	Interaccao e Multimedia				Algoritmos de Processamento de Sinal							6			1
 EIC0048		ASSO	Engenharia de Software				Arquitectura de Sistemas de Software							6			1
 EIC0095		AGRS	Sistemas Operativos e Redes			Arquitectura e Gestao de Redes e Sistemas						6			0
 EIC0089		CPAR	Programacao							Computacao Paralela												6			1
