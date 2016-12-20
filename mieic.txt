@@ -131,14 +131,6 @@ Unidades curriculares frequentadas
 	EIC0003		11
 	EIC0105		10
 	EIC0012		10
-	EIC0010		10
-	EIC0009		10
-	EIC0016		10
-	EIC0022		10
-	EIC0021		10
-	EIC0014		10
-	EIC0020		10
-	EIC0040		20
 
 up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  4
 Unidades curriculares frequentadas

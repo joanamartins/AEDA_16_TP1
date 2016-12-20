@@ -27,6 +27,7 @@ public:
 	vector<Optativa *> getOpts() const;
 	vector<Estudante *> getEstudantes() const;
 	vector<Docente *> getDocentes() const;
+	vector<priority_queue<Turma *>> getTurmas() const { return turmas; };
 	int getAno(string codigo);
 	int getSemestre(string codigo);
 	void addUC(Ucurricular *uc);

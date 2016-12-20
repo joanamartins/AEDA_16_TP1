@@ -687,6 +687,27 @@ void Estudante::menuInscrever()
 	feup[i]->setUCs(ucs);
 	setResultados(ucs_tmp);
 	setDate();
+	system("CLS");
+	Turma *ttmp = feup[i]->getTurmas()[getAno() - 1].top();
+	/*priority_queue<Turma *> ttt = feup[i]->getTurmas()[getAno() - 1];
+	while (!ttt.empty())
+	{
+		cout << setw(3) << ttt.top()->getID() << ' ' << ttt.top()->getVac() << endl;
+		ttt.pop();
+	}*/
+
+	turma = ttmp->getID();
+	ttmp->decVac();
+	feup[i]->getTurmas()[getAno() - 1].pop();
+	feup[i]->getTurmas()[getAno() - 1].push(ttmp);
+	cout << "\nA sua turma e 0" << getAno() << "MIEIC0" << turma << endl;
+
+	/*ttt = feup[i]->getTurmas()[getAno() - 1];
+	while (!ttt.empty())
+	{
+		cout << setw(3) << ttt.top()->getID() << ' ' << ttt.top()->getVac() << endl;
+		ttt.pop();
+	}*/
 	system("PAUSE");
 }
 

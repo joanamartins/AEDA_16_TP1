@@ -25,6 +25,7 @@ class Estudante {
 	string email;
 	string nome;
 	int estatuto;
+	int turma;
 	Date * dataInscricao;
 	vector<pair<string, int>> resultados;
 public:

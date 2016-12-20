@@ -180,6 +180,7 @@ void Curso::readData(string file)
 	{
 		ttmp.push_back(new Turma());
 	}
+	Turma::idg = 0;
 
 	ifstream curso;
 	curso.open(file);
@@ -216,6 +217,7 @@ void Curso::readData(string file)
 					turmas[ano - 1].push(ttmp[i]);
 				}
 				ttmp.clear();
+				Turma::idg = 0;
 				for (size_t i = 0; i < 8; i++)
 				{
 					ttmp.push_back(new Turma());

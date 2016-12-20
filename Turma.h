@@ -15,7 +15,7 @@ public:
 	static int idg;
 	int getID() { return id; };
 	void addUC(string uc, int vac) { vagas.push_back(make_pair(uc, vac)); vagasTotal += vac; };
-	//void setVac(int v) { vagas = v; };
-	//void decVacancy() { vagas--; };
-	bool operator<(Turma that) { if (this->vagasTotal < that.vagasTotal) return true; else if (this->vagasTotal == that.vagasTotal && this->id < that.id) return true; return false; };
+	int getVac() { return vagasTotal; };
+	void decVac() { for (size_t i = 0; i < vagas.size(); i++) { vagas[i].second--;	vagasTotal--; } };
+	bool operator<(Turma that) { return this->vagasTotal < that.vagasTotal; };
 };
