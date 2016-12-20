@@ -1,9 +1,12 @@
 #include "Curso.h"
 
-Curso::Curso(string sigla, string nome)
+Curso::Curso()
 {
-	this->sigla = sigla;
-	this->nome = nome;
+	priority_queue<Turma *> ttmp;
+	for (int i = 0; i < 5; i++)
+	{
+		turmas.push_back(ttmp);
+	}
 }
 
 vector <Ucurricular *> Curso::getUCs() const 
@@ -172,6 +175,11 @@ void Curso::readData(string file)
 	Optativa *opt_tmp = new Optativa;
 	Estudante *est_tmp = new Estudante;
 	Docente *doc_tmp = new Docente;
+	vector<Turma *> ttmp;
+	for (size_t i = 0; i < 8; i++)
+	{
+		ttmp.push_back(new Turma());
+	}
 
 	ifstream curso;
 	curso.open(file);
@@ -201,6 +209,15 @@ void Curso::readData(string file)
 			break;
 		else if (line.find("Ano") < 7)
 		{
+			for (size_t i = 0; i < ttmp.size(); i++)
+			{
+				turmas[ano - 1].push(ttmp[i]);
+			}
+			ttmp.clear();
+			for (size_t i = 0; i < 8; i++)
+			{
+				ttmp.push_back(new Turma());
+			}
 			ano++;
 			semestre -= 2;
 		}
@@ -213,6 +230,10 @@ void Curso::readData(string file)
 			section = line;
 			section.erase(section.begin() + section.find("\t"), section.end());
 			codigo = section;
+			for (size_t i = 0; i < ttmp.size(); i++)
+			{
+				ttmp[i]->addUC(codigo, 20);
+			}
 			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
 
 			section = line;
@@ -236,6 +257,11 @@ void Curso::readData(string file)
 			uc_tmp = new Ucurricular(codigo, sigla, nome, creditos, ano, semestre);
 			addUC(uc_tmp);
 		}
+	}
+
+	for (size_t i = 0; i < ttmp.size(); i++)
+	{
+		turmas[ano - 1].push(ttmp[i]);
 	}
 
 	getline(curso, line);

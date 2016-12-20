@@ -42,6 +42,9 @@
     <ClCompile Include="Reuniao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Turma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Curso.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Turma.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
