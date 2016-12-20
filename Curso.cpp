@@ -209,14 +209,17 @@ void Curso::readData(string file)
 			break;
 		else if (line.find("Ano") < 7)
 		{
-			for (size_t i = 0; i < ttmp.size(); i++)
+			if (ano > 0) 
 			{
-				turmas[ano - 1].push(ttmp[i]);
-			}
-			ttmp.clear();
-			for (size_t i = 0; i < 8; i++)
-			{
-				ttmp.push_back(new Turma());
+				for (size_t i = 0; i < ttmp.size(); i++)
+				{
+					turmas[ano - 1].push(ttmp[i]);
+				}
+				ttmp.clear();
+				for (size_t i = 0; i < 8; i++)
+				{
+					ttmp.push_back(new Turma());
+				}
 			}
 			ano++;
 			semestre -= 2;
