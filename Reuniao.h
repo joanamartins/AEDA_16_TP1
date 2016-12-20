@@ -23,6 +23,8 @@ public:
 	Date getDate() const;
 	string getStudent() const;
 	string getDesc() const;
+	void setDate(Date d);
+	void setStu(string s);
 	void setDesc(string desc);
 	bool operator<(const Reuniao &that) const;
 	bool operator==(const Reuniao &that) const;

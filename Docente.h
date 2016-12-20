@@ -29,6 +29,8 @@ public:
 	vector<string> getEstudantes() const;
 	void addEstudante(string codigo);
 	void addReuniao();
+	void removeReuniao();
+	void editReuniao();
 	string info() const;
 	void Menu();
 };

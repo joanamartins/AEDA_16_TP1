@@ -29,6 +29,16 @@ string Reuniao::getDesc() const
 	return descritivo;
 }
 
+void Reuniao::setDate(Date d)
+{
+	data = d;
+}
+
+void Reuniao::setStu(string s)
+{
+	studentID = s;
+}
+
 void Reuniao::setDesc(string desc)
 {
 	descritivo = desc;

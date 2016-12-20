@@ -55,7 +55,7 @@ void Docente::addReuniao()
 			s += ",";
 		s += feup[0]->getEstudantes()[i]->getCodigo();
 	}
-	int menu = getMenu(s, "Escolha um  estudante");
+	int menu = getMenu(s, "Escolha um estudante");
 	menu--;
 
 	cout << "Insira uma descricao: ";
@@ -63,6 +63,73 @@ void Docente::addReuniao()
 	getline(cin, desc);
 
 	reunioes.insert(Reuniao(date, feup[0]->getEstudantes()[menu]->getCodigo(), desc));
+
+}
+
+void Docente::removeReuniao()
+{
+	string d;
+	cout << "Introduza a data da reuniao a eliminar no formato dd/mm/aa\n\t>";
+	cin.ignore();
+	getline(cin, d);
+	Date date(d);
+	Reuniao r;
+	r.setDate(date);
+	cout << "\nReuniao a eliminar:\n" << reunioes.find(r);
+	system("PAUSE");
+	reunioes.remove(r);
+}
+
+void Docente::editReuniao()
+{
+	string d, s, desc;
+	cout << "Introduza a data da reuniao a editar no formato dd/mm/aa\n\t>";
+	cin.ignore();
+	getline(cin, d);
+	Date * date = new Date(d);
+	Reuniao r;
+	r.setDate(*date);
+	r = reunioes.find(r);
+	Reuniao r2 = r;
+
+	system("CLS");
+	cout << r;
+	int menu = getMenu("Data,Estudante,Descricao,Cancelar", "Deseja alterar:"), menuS;
+	switch (menu) {
+	case 1:
+		cout << "Introduza a nova data\n\t>";
+		cin.ignore();
+		getline(cin, d);
+		date = new Date(d);
+		reunioes.remove(r);
+		r2.setDate(*date);
+		reunioes.insert(r2);
+		break;
+	case 2:
+		s = "";
+		for (size_t i = 0; i < feup[0]->getEstudantes().size(); i++)
+		{
+			if (i > 0)
+				s += ",";
+			s += feup[0]->getEstudantes()[i]->getCodigo();
+		}
+		menuS = getMenu(s, "Escolha um estudante");
+		menuS--;
+		reunioes.remove(r);
+		r2.setStu(feup[0]->getEstudantes()[menuS]->getCodigo());
+		reunioes.insert(r2);
+		break;
+	case 3:
+		cout << "Introduza a nova descricao: ";
+		cin.ignore();
+		getline(cin, desc);
+		reunioes.remove(r);
+		r2.setDesc(desc);
+		reunioes.insert(r2);
+		break;
+	default:
+		break;
+	}
 }
 
 string Docente::info() const
@@ -87,7 +154,10 @@ void Docente::Menu()
 			addReuniao();
 			break;
 		case 2:
-			//removeReuniao();
+			removeReuniao();
+			break;
+		case 3:
+			editReuniao();
 			break;
 		case 4:
 			reunioes.printTree();
