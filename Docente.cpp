@@ -145,10 +145,14 @@ string Docente::info() const
 void Docente::Menu()
 {
 	int menu = -1;
-	while (menu != 5)
+	string line;
+	int totalReunioes, day, month, year, stu;
+	Date *d = new Date();
+	Reuniao *r = new Reuniao();
+	while (menu != 7)
 	{
 		system("CLS");
-		menu = getMenu("Nova reuniao,Cancelar reuniao,Alterar reuniao,Visualizar reunioes,Sair", "Reunioes");
+		menu = getMenu("Nova reuniao,Cancelar reuniao,Alterar reuniao,Visualizar reunioes,Marcar reunioes automaticamente,Marcar reunioes aleatoriamente,Sair", "Reunioes");
 		switch (menu) {
 		case 1:
 			addReuniao();
@@ -162,6 +166,51 @@ void Docente::Menu()
 		case 4:
 			reunioes.printTree();
 			system("PAUSE");
+			break;
+		case 5:
+			cout << "Quantas?\n  >";
+			cin.ignore();
+			getline(cin, line);
+			totalReunioes = stoi(line);
+			for (int i = 0; i < totalReunioes; i++)
+			{
+				day = d->getDay();
+				day++;
+				month = d->getMonth();
+				year = d->getYear();
+				if (day > daysInMonth(month, year))
+				{
+					day = 1;
+					month++;
+				}
+				if (month > 12)
+				{
+					month = 1;
+					year++;
+				}
+				d = new Date(day, month, year);
+				stu = i % feup[0]->getEstudantes().size();
+				r = new Reuniao(*d, feup[0]->getEstudantes()[stu]->getCodigo(), to_string(i));
+				reunioes.insert(*r);
+			}
+			break;
+		case 6:
+			cout << "Quantas?\n  >";
+			cin.ignore();
+			getline(cin, line);
+			totalReunioes = stoi(line);
+			for (int i = 0; i < totalReunioes; i++)
+			{
+				year = rand() % 10 + 2010;
+				month = rand() % 12 + 1;
+				day = rand() % daysInMonth(month, year) + 1;
+				d = new Date(day, month, year);
+				stu = rand() % feup[0]->getEstudantes().size();
+				r = new Reuniao(*d, feup[0]->getEstudantes()[stu]->getCodigo(), to_string(i));
+				reunioes.insert(*r);
+			}
+			break;
+		default:
 			break;
 		};
 	}

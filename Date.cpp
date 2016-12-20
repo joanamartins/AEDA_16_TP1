@@ -74,7 +74,14 @@ Date::~Date()
 
 string Date::getDate() const
 {
-	return to_string(day) + '/' + to_string(month) + '/' + to_string(year);
+	stringstream ss;
+	if (day < 10)
+		ss << '0';
+	ss << to_string(day) << '/';
+	if (month < 10)
+		ss << '0';
+	ss << to_string(month) << '/' << to_string(year);
+	return ss.str();
 }
 
 bool Date::operator<(Date that) const
@@ -87,19 +94,38 @@ bool Date::operator==(Date that) const
 	return (this->day == that.day && this->month == that.month && this->year == that.year);
 }
 
-bool Date::isLeap()
+bool Date::dateValidate()
+{
+	bool valid = true;
+	if ((day < 1 || day > daysInMonth(month, year)) && (daysInMonth(month, year) != 0 || day > 31 || day < 0))
+	{
+		valid = false;
+		cout << "Day out of range\n";
+	}
+	if (month < 1 || month > 12)
+	{
+		valid = false;
+		cout << "Month out of range\n";
+	}
+	if (!valid)
+		system("PAUSE");
+	return valid;
+}
+
+
+bool isLeap(int year)
 {
 	return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
 }
 
-int Date::daysInMonth()
+int daysInMonth(int month, int year)
 {
 	switch (month)
 	{
 	case 1:
 		return 31;
 	case 2:
-		if (isLeap())
+		if (isLeap(year))
 			return 29;
 		else
 			return 28;
@@ -126,22 +152,4 @@ int Date::daysInMonth()
 	default:
 		return 0;
 	}
-}
-
-bool Date::dateValidate()
-{
-	bool valid = true;
-	if ((day < 1 || day > daysInMonth()) && (daysInMonth() != 0 || day > 31 || day < 0))
-	{
-		valid = false;
-		cout << "Day out of range\n";
-	}
-	if (month < 1 || month > 12)
-	{
-		valid = false;
-		cout << "Month out of range\n";
-	}
-	if (!valid)
-		system("PAUSE");
-	return valid;
 }
