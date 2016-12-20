@@ -72,7 +72,7 @@ JCF	210963	jcf@fe.up.pt        Joao Paulo de Castro Canas Ferreira
 
 Estudantes
 Codigo			Password	Email					Nome									Estatuto
-up201405308		190865266	up201405308@fe.up.pt	Luis Miguel da Rocha Alves              Dirigente Associativo
+up201405308		190865266	up201405308@fe.up.pt	Luis Miguel da Rocha Alves              Dirigente Associativo	N/A
 Unidades curriculares frequentadas
 	EIC0004		17
 	EIC0083		16
@@ -91,7 +91,7 @@ Unidades curriculares frequentadas
 	EIC0020		10
 	EIC0040		20
 
-up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mae Estudante
+up201406989		190865266	up201406989@fe.up.pt	Miguel Rodrigues Pires                  Pai e Mae Estudante	N/A
 Unidades curriculares frequentadas
 	EIC0011		20
 	EIC0083		20
@@ -125,18 +125,8 @@ Unidades curriculares frequentadas
 	EIC0036		20
 	EIC0031		20
 	EIC0040		20
-	EIC0086		-1
-	EIC0034		-1
-	EIC0033		-1
-	EIC0039		-1
-	EIC0037		-1
-	EIC0106		-1
-	EIC0048		-1
-	EIC0082		-1
-	EIC0088		-1
-	EIC0092		-1
 
-up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  Militar
+up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  Militar	N/A
 Unidades curriculares frequentadas
 	EIC0004		17
 	EIC0083		16

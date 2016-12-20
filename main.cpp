@@ -30,15 +30,15 @@ int main()
 	}
 
 	int mainMenu = -1;
-	while (mainMenu != 3) {
+	while (mainMenu != 4) {
 		system("CLS");
-		mainMenu = getMenu("Login,Registar,Sair,Sair e guardar alteracoes");
+		mainMenu = getMenu("Login estudantes,Novo estudante,Login docentes,Sair,Sair e guardar alteracoes");
 		switch (mainMenu) {
 		case 1:
 			try {
 				//bypass login() for testing purposes
-				feup[0]->getEstudantes()[1]->menu();
-				//login();
+				//feup[0]->getEstudantes()[1]->menu();
+				studentLogin();
 			}
 			catch (EstudanteInvalido &est) {
 				est.usernameInvalido();
@@ -50,10 +50,12 @@ int main()
 		case 2:
 			feup[0]->newStudent();
 			break;
-		case 4:
+		case 3:
+			docLogin();
+		case 5:
 			mieic.saveData("mieic_out.txt");
 			mieec.saveData("mieec_out.txt");
-			mainMenu = 3;
+			mainMenu = 4;
 			break;
 		default:
 			break;

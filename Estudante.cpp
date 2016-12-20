@@ -690,7 +690,7 @@ void Estudante::menuInscrever()
 	system("PAUSE");
 }
 
-void login()
+void studentLogin()
 {
 	string username;
 	string nome;

@@ -14,6 +14,59 @@ Date::Date()
 	year = date.tm_year + 1900;
 }
 
+Date::Date(string &line)
+{
+	string stmp = line;
+	int count = 0;
+	while (count != 2)
+	{
+		for (size_t i = 0; i < line.length(); i++)
+		{
+			if (line[i] == '/')
+				count++;
+			else if (line[i] < 48 || line[i] > 57)
+			{
+				count = 0;
+				cout << "Insira apenas numeros e barras (dd/mm/aa)\n";
+				break;
+			}
+		}
+
+		if (count == 2)
+		{
+			stmp = line;
+			line = stmp;
+			line.erase(line.begin() + line.find('/'), line.end());
+			day = stoi(line);
+
+			line = stmp;
+			line.erase(line.begin(), line.begin() + line.find('/') + 1);
+			line.erase(line.begin() + line.find('/'), line.end());
+			month = stoi(line);
+
+			line = stmp;
+			line.erase(line.begin(), line.begin() + line.find('/') + 1);
+			line.erase(line.begin(), line.begin() + line.find('/') + 1);
+			year = stoi(line);
+
+			if (year < 70)
+				year += 2000;
+			else if (year < 100)
+				year += 1900;
+			if (!(dateValidate()))
+				count = 0;
+		}
+		else
+		{
+			cout << "Data invalida\n\t>";
+			cin.ignore();
+			getline(cin, line);
+			count = 0;
+			stmp = line;
+		}
+	}
+}
+
 Date::~Date()
 {
 	//
@@ -24,9 +77,14 @@ string Date::getDate() const
 	return to_string(day) + '/' + to_string(month) + '/' + to_string(year);
 }
 
-bool Date::operator<(Date that)
+bool Date::operator<(Date that) const
 {
 	return ((this->day + this->month * 100 + this->year * 10000) < (that.day + that.month * 100 + that.year * 10000));
+}
+
+bool Date::operator==(Date that) const
+{
+	return (this->day == that.day && this->month == that.month && this->year == that.year);
 }
 
 bool Date::isLeap()

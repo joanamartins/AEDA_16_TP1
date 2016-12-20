@@ -62,4 +62,4 @@ bool compareByResult(pair<string, int> uc1, pair<string, int> uc2);
 
 bool validEmail(string email);
 
-void login();
+void studentLogin();
