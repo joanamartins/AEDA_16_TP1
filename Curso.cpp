@@ -97,6 +97,20 @@ void Curso::setUCs(const vector <Ucurricular *> &ucs)
 	}
 }
 
+void Curso::eraseStudent(Estudante * student)
+{
+	size_t j;
+	for (j = 0; j < getEstudantes().size(); j++)
+	{
+		if (getEstudantes()[j]->getCodigo() == student->getCodigo())
+		{
+			estudantes.erase(estudantes.begin() + j);
+			break;
+		}
+	}
+
+}
+
 void Curso::newStudent()
 {
 	string codigo;

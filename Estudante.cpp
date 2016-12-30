@@ -62,6 +62,17 @@ Estudante::Estudante(string codigo, unsigned long password, string email, string
 	this->password = password;
 }
 
+Estudante::Estudante(string codigo, unsigned long password, string email, string nome, int estatuto, int turma, Date * data, vector<pair<string, int>> resultados) {
+	this->codigo = codigo;
+	this->email = email;
+	this->nome = nome;
+	this->estatuto = estatuto;
+	this->dataInscricao = data;
+	this->turma = turma;
+	this->resultados = resultados;
+	this->password = password;
+}
+
 string Estudante::info() const {
 	stringstream ss;
 	ss << codigo << "\t\t" << password << "\t" << email << "\t" << nome;
@@ -216,9 +227,9 @@ bool validEmail(string email)
 
 void Estudante::menu() {
 	int menuAluno = -1;
-	while (menuAluno != 4) {
+	while (menuAluno != 5) {
 		system("CLS");
-		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Logout");
+		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Finalizar Curso,Logout");
 		switch (menuAluno) {
 		case 1:
 			menuVisualizar();
@@ -228,6 +239,33 @@ void Estudante::menu() {
 			break;
 		case 3:
 			menuInscrever();
+			break;
+		case 4:
+			finalizarCurso();
+			menuAluno = 5;
+			break;
+		}
+	}
+}
+
+void Acabado::menu() {
+	int menuAluno = -1;
+	while (menuAluno != 5) {
+		system("CLS");
+		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Retomar estudos,Logout");
+		switch (menuAluno) {
+		case 1:
+			menuVisualizar();
+			break;
+		case 2:
+			menuEditar();
+			break;
+		case 3:
+			menuInscrever();
+			break;
+		case 4:
+			recomecarCurso();
+			menuAluno = 5;
 			break;
 		}
 	}
@@ -711,6 +749,34 @@ void Estudante::menuInscrever()
 	system("PAUSE");
 }
 
+void Estudante::finalizarCurso()
+{
+	string estatuto;
+	int term = getMenu("Terminei,Desisti,Continuar estudos");
+	if (term == 1)
+		estatuto = "Concluido";
+	else if (term == 2)
+		estatuto = "Interrompido";
+	else
+		return;
+	Acabado * estudante = new Acabado(this->getCodigo(), this->getPassword(), this->getEmail(), this->getNome(), this->getEstatuto(), this->getTurma(), this->getData(), this->getResultados(), estatuto);
+
+	feup[0]->eraseStudent(this);
+	feup[0]->acabados.insert(estudante);
+	cout << "Nao se esqueca que pode voltar a qualquer momento para retomar os seus estudos.\n";
+	system("PAUSE");
+}
+
+void Acabado::recomecarCurso()
+{
+	Estudante * estudante = new Estudante(this->getCodigo(), this->getPassword(), this->getEmail(), this->getNome(), this->getEstatuto(), this->getTurma(), this->getData(), this->getResultados());
+
+	feup[0]->acabados.erase(feup[0]->acabados.find(this));
+	feup[0]->addEstudante(estudante);
+	cout << "Ficamos felizes com a sua decisao! Por favor faca login novamente.\n";
+	system("PAUSE");
+}
+
 void studentLogin()
 {
 	string username;
@@ -755,7 +821,7 @@ void studentLogin()
 
 	if (studentExists && validPassword)
 	{
-		cout << "Bemvindo, " << nome << endl;
+		cout << "Bem-vindo, " << nome << endl;
 		system("PAUSE");
 		feup[i]->getEstudantes()[j]->menu();
 	}
@@ -765,6 +831,23 @@ void studentLogin()
 	}
 	else
 	{
-		throw EstudanteInvalido(username);
+		tabHAcabado::iterator it = feup[0]->acabados.find(new Acabado(username));
+		studentExists = (it != feup[0]->acabados.end());
+		if (studentExists)
+		{
+			validPassword = ((*it)->getPassword() == hashedPassword);
+		}
+		else 
+			throw EstudanteInvalido(username);
+		if (studentExists && validPassword)
+		{
+			cout << "Bem-vindo, " << (*it)->getNome() << ",\nDeseja continuar o curso? Selecione 4 no proximo menu!\n";
+			system("PAUSE");
+			(*it)->menu();
+		}
+		else if (studentExists)
+		{
+			throw PasswordInvalida(hashedPassword);
+		}
 	}
 }
