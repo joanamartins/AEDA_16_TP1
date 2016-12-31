@@ -16,6 +16,7 @@ public:
 	int getID() { return id; };
 	void addUC(string uc, int vac) { vagas.push_back(make_pair(uc, vac)); vagasTotal += vac; };
 	int getVac() { return vagasTotal; };
+	vector<pair<string, int>> getVagas() const { return vagas; };
 	void decVac() { for (size_t i = 0; i < vagas.size(); i++) { vagas[i].second--;	vagasTotal--; } };
 	bool operator<(Turma that) { return this->vagasTotal < that.vagasTotal; };
 };

@@ -36,7 +36,7 @@ int main()
 		switch (mainMenu) {
 		case 1:
 			try {
-				//bypass login() for testing purposes
+				//bypass studentLogin() for testing purposes
 				//feup[0]->getEstudantes()[1]->menu();
 				studentLogin();
 			}
@@ -51,7 +51,8 @@ int main()
 			feup[0]->newStudent();
 			break;
 		case 3:
-			docLogin();
+			docLogin();	//add login system later
+			break;
 		case 5:
 			mieic.saveData("mieic_out.txt");
 			mieec.saveData("mieec_out.txt");

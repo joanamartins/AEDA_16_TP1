@@ -55,7 +55,7 @@ public:
 	void setEmail(string email);
 	void setResultados(const vector <Ucurricular *> &ucs);
 	void addUC(string codigo, int resultado);
-	string info() const;
+	virtual string info() const;
 	virtual void menu();
 	void menuVisualizar(); 
 	void menuEditar();
@@ -81,6 +81,16 @@ public:
 		this->estado = estado;
 	};
 	Acabado(string codigo) : Estudante(codigo) { estado = "tmp"; };
+	string info() const {
+		string info = Estudante::info();
+		for (size_t i = info.length(); i > 0 ; i--)
+		{
+			if (info[i] == '\t')
+				break;
+			info.erase(info.begin() + i);
+		}
+		return info + estado + '\n';
+	}
 	void menu();
 	void recomecarCurso();
 };

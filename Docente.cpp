@@ -142,7 +142,71 @@ string Docente::info() const
 	return ss.str();
 }
 
-void Docente::Menu()
+void Docente::menu()
+{
+	int menu = -1, menuStu = -1;
+	vector<priority_queue<Turma *>> turmas = feup[0]->getTurmas();
+	while (menu != 4)
+	{
+		system("CLS");
+		menu = getMenu("Visualizar turmas,Visualizar estudantes,Reunioes,Logout");
+		switch (menu) {
+		case 1:
+			system("CLS");
+			for (size_t i = 0; i < turmas.size()-1; i++)
+			{
+				cout << i + 1 << "o ano\n";
+				for (size_t j = 0; j < 3; j++)
+				{
+					cout << "  Turma " << turmas[i].top()->getID() << endl << "    ";
+					for (size_t k = 0; k < turmas[i].top()->getVagas().size(); k++)
+					{
+						cout << turmas[i].top()->getVagas()[k].first << " - " << turmas[i].top()->getVagas()[k].second << ", ";
+					}
+					cout << endl;
+					turmas[i].pop();
+				}
+			}
+			system("PAUSE");
+			break;
+		case 2:
+			while (menuStu != 3)
+			{
+				system("CLS");
+				menuStu = getMenu("Estudantes atuais,Ex-estudantes,Voltar atras");
+				switch (menuStu) {
+				case 1:
+					system("CLS");
+					cout << "Codigo\t\tPassword (hashed)\tEmail\t\t\tNome\t\t\t\t\tEstatuto\t\tData de inscricao\n";
+					for (size_t i = 0; i < feup[0]->getEstudantes().size(); i++)
+					{
+						cout << feup[0]->getEstudantes()[i]->info();
+					}
+					system("PAUSE");
+					break;
+				case 2:
+					system("CLS");
+					cout << "Codigo\t\tPassword (hashed)\tEmail\t\t\tNome\t\t\t\t\tEstatuto\t\tEstado\n";
+					for (auto it = feup[0]->acabados.begin(); it != feup[0]->acabados.end(); it++)
+					{
+						cout << (*it)->info();
+					}
+					system("PAUSE");
+					break;
+				default:
+					break;
+				}
+			}
+			break;
+		case 3:
+			menuReunioes();
+			break;
+		default:
+			break;
+		}
+	}
+}
+void Docente::menuReunioes()
 {
 	int menu = -1;
 	string line;
@@ -218,6 +282,6 @@ void Docente::Menu()
 
 void docLogin()
 {
-	feup[0]->getDocentes()[0]->Menu();
+	feup[0]->getDocentes()[0]->menu();
 	
 }

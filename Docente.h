@@ -32,7 +32,8 @@ public:
 	void removeReuniao();
 	void editReuniao();
 	string info() const;
-	void Menu();
+	void menu();
+	void menuReunioes();
 };
 
 void docLogin();
