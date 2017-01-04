@@ -19,6 +19,13 @@ public:
 	void usernameInvalido();
 };
 
+class DocenteInvalido {
+	string sigla;
+public:
+	DocenteInvalido(string sigla);
+	void siglaInvalida();
+};
+
 class PasswordInvalida {
 	unsigned long password;
 public:

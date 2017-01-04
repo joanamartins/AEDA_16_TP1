@@ -138,7 +138,7 @@ Docente * Estudante::getDocente()
 		{
 			for (j = 0; j < feup[0]->getDocentes()[i]->getEstudantes().size(); j++)
 			{
-				if (feup[0]->getDocentes()[i]->getEstudantes()[j] == codigo)
+				if (feup[0]->getDocentes()[i]->getEstudantes()[j].first == codigo)
 				{
 					notFound = false;
 					break;
@@ -151,7 +151,7 @@ Docente * Estudante::getDocente()
 	if (notFound)
 	{
 		i = Docente::id % feup[0]->getDocentes().size();
-		feup[0]->getDocentes()[i]->addEstudante(this->codigo);
+		feup[0]->getDocentes()[i]->addEstudante(this->codigo, this->nome);
 		Docente::id++;
 	}
 	if (i > 0)
@@ -250,9 +250,9 @@ void Estudante::menu() {
 
 void Acabado::menu() {
 	int menuAluno = -1;
-	while (menuAluno != 5) {
+	while (menuAluno != 4) {
 		system("CLS");
-		menuAluno = getMenu("Visualizar,Editar dados,Inscricao em UCs,Retomar estudos,Logout");
+		menuAluno = getMenu("Visualizar,Editar dados,Retomar estudos,Logout");
 		switch (menuAluno) {
 		case 1:
 			menuVisualizar();
@@ -261,11 +261,8 @@ void Acabado::menu() {
 			menuEditar();
 			break;
 		case 3:
-			menuInscrever();
-			break;
-		case 4:
 			recomecarCurso();
-			menuAluno = 5;
+			menuAluno = 4;
 			break;
 		}
 	}
@@ -841,7 +838,7 @@ void studentLogin()
 			throw EstudanteInvalido(username);
 		if (studentExists && validPassword)
 		{
-			cout << "Bem-vindo, " << (*it)->getNome() << ",\nDeseja continuar o curso? Selecione 4 no proximo menu!\n";
+			cout << "Bem-vindo, " << (*it)->getNome() << ",\nDeseja continuar o curso? Selecione 3 no proximo menu!\n";
 			system("PAUSE");
 			(*it)->menu();
 		}

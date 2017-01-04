@@ -51,7 +51,15 @@ int main()
 			feup[0]->newStudent();
 			break;
 		case 3:
-			docLogin();	//add login system later
+			try {
+				docLogin();
+			}
+			catch (DocenteInvalido &doc) {
+				doc.siglaInvalida();
+			}
+			catch (PasswordInvalida &pass) {
+				pass.passwordInvalida();
+			}
 			break;
 		case 5:
 			mieic.saveData("mieic_out.txt");

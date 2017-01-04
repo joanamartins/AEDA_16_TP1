@@ -17,7 +17,8 @@ class Docente {
 	int codigo;
 	string email;
 	string nome;
-	vector<string> estudantes;
+	unsigned password;
+	vector<pair<string,string>> estudantes;
 	BST<Reuniao> reunioes;
 public:
 	static int id;
@@ -26,8 +27,10 @@ public:
 	Docente(string sigla, int codigo, string email, string nome);
 	string getNome() const;
 	string getEmail() const;
-	vector<string> getEstudantes() const;
-	void addEstudante(string codigo);
+	string getSigla() const { return sigla; };
+	unsigned getPassword() const { return password; };
+	vector<pair<string, string>> getEstudantes() const;
+	void addEstudante(string codigo, string nome);
 	void addReuniao();
 	void removeReuniao();
 	void editReuniao();

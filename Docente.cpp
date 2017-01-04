@@ -18,6 +18,7 @@ Docente::Docente(string sigla, int codigo, string email, string nome) : reunioes
 		this->email = sigla;
 	}
 	this->nome = nome;
+	this->password = hashing("1234");
 }
 
 string Docente::getNome() const
@@ -30,18 +31,24 @@ string Docente::getEmail() const
 	return email;
 }
 
-vector<string> Docente::getEstudantes() const
+vector<pair<string, string>> Docente::getEstudantes() const
 {
 	return estudantes;
 }
 
-void Docente::addEstudante(string codigo)
+void Docente::addEstudante(string codigo, string nome)
 {
-	estudantes.push_back(codigo);
+	estudantes.push_back(make_pair(codigo, nome));
 }
 
 void Docente::addReuniao()
 {
+	if (getEstudantes().empty())
+	{
+		cout << "Nao possui nenhum estudante sob a sua tutela.\n";
+		system("PAUSE");
+		return;
+	}
 	string d, s, desc;
 	cout << "Introduza a data da reuniao no formato dd/mm/aa\n\t>";
 	cin.ignore();
@@ -49,25 +56,33 @@ void Docente::addReuniao()
 	Date date(d);
 
 	s = "";
-	for (size_t i = 0; i < feup[0]->getEstudantes().size(); i++)
+	for (size_t i = 0; i < getEstudantes().size(); i++)
 	{
 		if (i > 0)
 			s += ",";
-		s += feup[0]->getEstudantes()[i]->getCodigo();
+		s += getEstudantes()[i].first;
+		s += "\t";
+		s += getEstudantes()[i].second;
 	}
-	int menu = getMenu(s, "Escolha um estudante");
+	int menu = getMenu(s, "Escolha um protegido/pupilo");
 	menu--;
 
 	cout << "Insira uma descricao: ";
 	cin.ignore();
 	getline(cin, desc);
 
-	reunioes.insert(Reuniao(date, feup[0]->getEstudantes()[menu]->getCodigo(), desc));
+	reunioes.insert(Reuniao(date, getEstudantes()[menu].first + '\t' + getEstudantes()[menu].second, desc));
 
 }
 
 void Docente::removeReuniao()
 {
+	if (reunioes.isEmpty())
+	{
+		cout << "Nao existem reunioes agendadas.\n";
+		system("PAUSE");
+		return;
+	}
 	string d;
 	cout << "Introduza a data da reuniao a eliminar no formato dd/mm/aa\n\t>";
 	cin.ignore();
@@ -171,6 +186,7 @@ void Docente::menu()
 			system("PAUSE");
 			break;
 		case 2:
+			menuStu = -1;
 			while (menuStu != 3)
 			{
 				system("CLS");
@@ -283,6 +299,83 @@ void Docente::menuReunioes()
 
 void docLogin()
 {
-	feup[0]->getDocentes()[0]->menu();
-	
+	string sigla;
+	string nome;
+	string password;
+	unsigned long hashedPassword;
+	bool docExists = false;
+	bool validPassword = false;
+
+	system("CLS");
+	cin.ignore();
+	cout << "Sigla: ";
+	getline(cin, sigla);
+	cout << "Password: ";
+	password = maskPassword();
+	hashedPassword = hashing(password);
+
+	docExists = false;
+	validPassword = false;
+	size_t i, j;
+	for (size_t i1 = 0; i1 < feup.size(); i1++)
+	{
+		for (size_t j1 = 0; j1 < feup[i1]->getDocentes().size(); j1++)
+		{
+			if (feup[i1]->getDocentes()[j1]->getSigla() == sigla && !(docExists))
+			{
+				docExists = true;
+				i = i1;
+				j = j1;
+				if (feup[i1]->getDocentes()[j1]->getPassword() == hashedPassword)
+				{
+					validPassword = true;
+					nome = feup[i1]->getDocentes()[j1]->getNome();
+					break;
+				}
+				break;
+			}
+		}
+	}
+	if (!docExists)
+	{
+		for (size_t k = 0; k < sigla.length(); k++)
+		{
+			sigla[k] -= 32;
+		}
+
+		for (size_t i1 = 0; i1 < feup.size(); i1++)
+		{
+			for (size_t j1 = 0; j1 < feup[i1]->getDocentes().size(); j1++)
+			{
+				if (feup[i1]->getDocentes()[j1]->getSigla() == sigla && !(docExists))
+				{
+					docExists = true;
+					i = i1;
+					j = j1;
+					if (feup[i1]->getDocentes()[j1]->getPassword() == hashedPassword)
+					{
+						validPassword = true;
+						nome = feup[i1]->getDocentes()[j1]->getNome();
+						break;
+					}
+					break;
+				}
+			}
+		}
+	}
+
+	if (docExists && validPassword)
+	{
+		cout << "Bem-vindo, " << nome << endl;
+		system("PAUSE");
+		feup[i]->getDocentes()[j]->menu();
+	}
+	else if (docExists)
+	{
+		throw PasswordInvalida(hashedPassword);
+	}
+	else
+	{
+		throw DocenteInvalido(sigla);
+	}
 }

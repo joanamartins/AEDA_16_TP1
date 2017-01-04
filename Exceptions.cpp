@@ -22,7 +22,18 @@ EstudanteInvalido::EstudanteInvalido(string nome)
 
 void EstudanteInvalido::usernameInvalido()
 {
-	cout << "Username does not exist: " << "\"" << nome << "\"" << endl;
+	cout << "Username nao existe: " << "\"" << nome << "\"" << endl;
+	system("PAUSE");
+}
+
+DocenteInvalido::DocenteInvalido(string sigla)
+{
+	this->sigla = sigla;
+}
+
+void DocenteInvalido::siglaInvalida()
+{
+	cout << "Sigla nao existe: " << "\"" << sigla << "\"" << endl;
 	system("PAUSE");
 }
 
