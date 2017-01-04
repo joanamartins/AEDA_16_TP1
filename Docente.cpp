@@ -187,10 +187,10 @@ void Docente::menu()
 			break;
 		case 2:
 			menuStu = -1;
-			while (menuStu != 3)
+			while (menuStu != 4)
 			{
 				system("CLS");
-				menuStu = getMenu("Estudantes atuais,Ex-estudantes,Voltar atras");
+				menuStu = getMenu("Estudantes atuais,Ex-estudantes,Pupilos,Voltar atras");
 				switch (menuStu) {
 				case 1:
 					system("CLS");
@@ -207,6 +207,15 @@ void Docente::menu()
 					for (auto it = feup[0]->acabados.begin(); it != feup[0]->acabados.end(); it++)
 					{
 						cout << (*it)->info();
+					}
+					system("PAUSE");
+					break;
+				case 3:
+					system("CLS");
+					cout << "Codigo\t\tNome\n";
+					for (size_t i = 0; i < getEstudantes().size(); i++)
+					{
+						cout << getEstudantes()[i].first << " - " << getEstudantes()[i].second << endl;
 					}
 					system("PAUSE");
 					break;
