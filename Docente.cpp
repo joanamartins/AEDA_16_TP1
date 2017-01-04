@@ -145,7 +145,7 @@ string Docente::info() const
 void Docente::menu()
 {
 	int menu = -1, menuStu = -1;
-	vector<priority_queue<Turma *>> turmas = feup[0]->getTurmas();
+	vector<priority_queue<Turma>> turmas = feup[0]->getTurmas();
 	while (menu != 4)
 	{
 		system("CLS");
@@ -153,15 +153,16 @@ void Docente::menu()
 		switch (menu) {
 		case 1:
 			system("CLS");
+			turmas = feup[0]->getTurmas();
 			for (size_t i = 0; i < turmas.size()-1; i++)
 			{
 				cout << i + 1 << "o ano\n";
 				for (size_t j = 0; j < 3; j++)
 				{
-					cout << "  Turma " << turmas[i].top()->getID() << endl << "    ";
-					for (size_t k = 0; k < turmas[i].top()->getVagas().size(); k++)
+					cout << "  Turma " << turmas[i].top().getID() << " (Vagas da UC mais ocupada: " << turmas[i].top().getVac() << ")\n    ";
+					for (size_t k = 0; k < turmas[i].top().getVagas().size(); k++)
 					{
-						cout << turmas[i].top()->getVagas()[k].first << " - " << turmas[i].top()->getVagas()[k].second << ", ";
+						cout << turmas[i].top().getVagas()[k].first << " - " << turmas[i].top().getVagas()[k].second <<", ";
 					}
 					cout << endl;
 					turmas[i].pop();

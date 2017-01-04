@@ -44,7 +44,7 @@ class Curso {
 	vector<Optativa *> optativas;
 	vector<Estudante *> estudantes;
 	vector<Docente *> docentes;
-	vector<priority_queue<Turma *>> turmas;	//1 queue per year
+	vector<priority_queue<Turma>> turmas;	//1 queue per year
 	
 public:
 	tabHAcabado acabados;
@@ -54,7 +54,7 @@ public:
 	vector<Optativa *> getOpts() const;
 	vector<Estudante *> getEstudantes() const;
 	vector<Docente *> getDocentes() const;
-	vector<priority_queue<Turma *>> getTurmas() const { return turmas; };
+	vector<priority_queue<Turma>> getTurmas() { return turmas; };
 	tabHAcabado getAcabados() { return acabados; };
 	int getAno(string codigo);
 	int getSemestre(string codigo);
@@ -67,6 +67,7 @@ public:
 	void setUCs(const vector <Ucurricular *> &ucs);
 	void eraseStudent(Estudante * student);
 	void newStudent();
+	void swapClass(int i, const Turma &t);
 	void readData(string file);
 	void saveData(string file) const;
 };

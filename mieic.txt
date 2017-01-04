@@ -140,32 +140,6 @@ Unidades curriculares frequentadas
 	EIC0004		20
 	EIC0003		20
 	FEUP002		20
-	EIC0105		20
-	EIC0012		20
-	EIC0010		20
-	EIC0009		20
-	EIC0016		20
-	EIC0022		20
-	EIC0021		20
-	EIC0014		20
-	EIC0013		20
-	EIC0020		20
-	EIC0023		20
-	EIC0110		20
-	EIC0019		20
-	EIC0027		20
-	EIC0111		20
-	EIC0026		20
-	EIC0084		20
-	EIC0024		20
-	EIC0032		20
-	EIC0112		20
-	EIC0085		20
-	EIC0029		20
-	EIC0028		20
-	EIC0036		20
-	EIC0031		20
-	EIC0040		20
 
 up201402676		190865266	up201402676@fe.up.pt	Joana Martins Ferreira                  6
 Unidades curriculares frequentadas
@@ -174,14 +148,6 @@ Unidades curriculares frequentadas
 	EIC0005		15
 	EIC0011		11
 	FEUP002		15
-	EIC0003		11
-	EIC0105		10
-	EIC0012		10
-	EIC0010		10
-	EIC0009		10
-	EIC0016		10
-	EIC0022		10
-	EIC0021		10
-	EIC0014		10
-	EIC0013		10
-	EIC0020 	10
+
+up201405000		190865266	up201405000@fe.up.pt	Jose Lima                  6
+Unidades curriculares frequentadas

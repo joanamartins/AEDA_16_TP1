@@ -2,7 +2,7 @@
 
 Curso::Curso()
 {
-	priority_queue<Turma *> ttmp;
+	priority_queue<Turma> ttmp;
 	for (int i = 0; i < 5; i++)
 	{
 		turmas.push_back(ttmp);
@@ -164,6 +164,12 @@ void Curso::newStudent()
 	system("PAUSE");
 }
 
+void Curso::swapClass(int i, const Turma &t)
+{
+	turmas[i].pop();
+	turmas[i].push(t);
+}
+
 void Curso::readData(string file)
 {
 	string line;
@@ -189,10 +195,12 @@ void Curso::readData(string file)
 	Optativa *opt_tmp = new Optativa;
 	Estudante *est_tmp = new Estudante;
 	Docente *doc_tmp = new Docente;
-	vector<Turma *> ttmp;
+	vector<Turma> ttmp;
+	Turma * tutmp;
 	for (size_t i = 0; i < 8; i++)
 	{
-		ttmp.push_back(new Turma());
+		tutmp = new Turma();
+		ttmp.push_back(*tutmp);
 	}
 	Turma::idg = 0;
 
@@ -234,7 +242,8 @@ void Curso::readData(string file)
 				Turma::idg = 0;
 				for (size_t i = 0; i < 8; i++)
 				{
-					ttmp.push_back(new Turma());
+					tutmp = new Turma();
+					ttmp.push_back(*tutmp);
 				}
 			}
 			ano++;
@@ -251,7 +260,7 @@ void Curso::readData(string file)
 			codigo = section;
 			for (size_t i = 0; i < ttmp.size(); i++)
 			{
-				ttmp[i]->addUC(codigo, 20);
+				ttmp[i].addUC(codigo, 20+rand()%50);
 			}
 			line.erase(line.begin(), line.begin() + line.find("\t") + 1);
 
